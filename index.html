@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f766e" />
+  <title>Chotelal Clinics | Chotelal Ji AI Health Assistant</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: #f7fbfb;
+      color: #102a2a;
+      line-height: 1.6;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e5eeee;
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+      color: #0f766e;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: #ccfbf1;
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: #0f766e;
+    }
+
+    .nav-cta {
+      background: #0f766e;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: none;
+    }
+
+    .nav-cta:hover {
+      background: #115e59;
+    }
+
+    .menu-btn {
+      display: none;
+      background: white;
+      border: 1px solid #dbe7e7;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 20px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      padding: 75px 20px 65px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #e6fffa;
+      color: #0f766e;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.03;
+      letter-spacing: -2.5px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #0f766e;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #547070;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      border-radius: 13px;
+      padding: 14px 20px;
+      font-weight: 800;
+      border: none;
+    }
+
+    .primary-btn {
+      background: #0f766e;
+      color: white;
+      box-shadow: 0 10px 25px rgba(15, 118, 110, 0.18);
+    }
+
+    .primary-btn:hover {
+      background: #115e59;
+      transform: translateY(-1px);
+    }
+
+    .secondary-btn {
+      background: white;
+      color: #0f766e;
+      border: 1px solid #cce4e2;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 440px;
+      background: linear-gradient(145deg, #ecfeff, #f0fdfa);
+      border: 1px solid #d5eeee;
+      border-radius: 32px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(20, 184, 166, 0.09);
+    }
+
+    .hero-card::before {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      right: -90px;
+    }
+
+    .hero-card::after {
+      width: 220px;
+      height: 220px;
+      bottom: -80px;
+      left: -70px;
+    }
+
+    .doctor-avatar {
+      width: 205px;
+      height: 205px;
+      border-radius: 50%;
+      background: white;
+      border: 8px solid #ccfbf1;
+      display: grid;
+      place-items: center;
+      font-size: 105px;
+      box-shadow: 0 25px 55px rgba(15, 118, 110, 0.14);
+      position: relative;
+      z-index: 2;
+    }
+
+    .doctor-card {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #e0eeee;
+      border-radius: 20px;
+      padding: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 3;
+    }
+
+    .doctor-name {
+      font-weight: 800;
+    }
+
+    .online {
+      color: #0f766e;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .online-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: #607878;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid #e2eeee;
+      border-radius: 20px;
+      padding: 25px;
+      transition: 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(20, 70, 70, 0.08);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #ecfeff;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .feature-card p {
+      color: #647979;
+      font-size: 14px;
+    }
+
+    /* =========================
+       AI DOCTOR
+    ========================= */
+
+    .doctor-section {
+      background: #ecfdfb;
+    }
+
+    .doctor-wrapper {
+      max-width: 1180px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    .doctor-interface {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border: 1px solid #d9eeee;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(15, 118, 110, 0.08);
+    }
+
+    .doctor-top {
+      padding: 20px;
+      border-bottom: 1px solid #e7eeee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .doctor-profile {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .mini-avatar {
+      width: 54px;
+      height: 54px;
+      background: #ccfbf1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+    }
+
+    .doctor-status {
+      color: #059669;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .call-status {
+      background: #ecfdf5;
+      color: #047857;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chat-area {
+      height: 400px;
+      padding: 25px;
+      overflow-y: auto;
+      background: #fbfefe;
+    }
+
+    .message {
+      max-width: 75%;
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      border-radius: 17px;
+      font-size: 14px;
+    }
+
+    .message.bot {
+      background: #e8f8f6;
+      border-bottom-left-radius: 5px;
+    }
+
+    .message.user {
+      background: #0f766e;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 5px;
+    }
+
+    .message-time {
+      display: block;
+      margin-top: 4px;
+      opacity: 0.55;
+      font-size: 10px;
+    }
+
+    .chat-input-area {
+      border-top: 1px solid #e7eeee;
+      padding: 15px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input {
+      flex: 1;
+      border: 1px solid #d5e5e5;
+      border-radius: 13px;
+      padding: 13px 15px;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: #0f766e;
+    }
+
+    .icon-btn {
+      width: 48px;
+      min-width: 48px;
+      border: none;
+      border-radius: 13px;
+      background: #ecfdfb;
+      color: #0f766e;
+      font-size: 20px;
+    }
+
+    .send-btn {
+      background: #0f766e;
+      color: white;
+    }
+
+    .call-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 17px;
+      border-top: 1px solid #edf2f2;
+    }
+
+    .call-btn {
+      border: none;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #ecfdfb;
+      font-size: 22px;
+    }
+
+    .call-btn.active {
+      background: #0f766e;
+      color: white;
+    }
+
+    .end-call {
+      background: #fee2e2;
+    }
+
+    .call-label {
+      text-align: center;
+      font-size: 12px;
+      color: #667;
+      margin-top: 4px;
+    }
+
+    /* =========================
+       CALL MODAL
+    ========================= */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(7, 32, 32, 0.72);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .call-window {
+      width: min(430px, 100%);
+      background: white;
+      border-radius: 28px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    }
+
+    .call-avatar {
+      width: 140px;
+      height: 140px;
+      margin: 10px auto 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 72px;
+      background: #ccfbf1;
+      border: 7px solid #e6fffa;
+    }
+
+    .wave {
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 20px 0;
+    }
+
+    .wave span {
+      width: 5px;
+      height: 12px;
+      border-radius: 10px;
+      background: #0f766e;
+      animation: wave 0.8s infinite ease-in-out;
+    }
+
+    .wave span:nth-child(2) { animation-delay: .1s; }
+    .wave span:nth-child(3) { animation-delay: .2s; }
+    .wave span:nth-child(4) { animation-delay: .3s; }
+    .wave span:nth-child(5) { animation-delay: .4s; }
+    .wave span:nth-child(6) { animation-delay: .3s; }
+    .wave span:nth-child(7) { animation-delay: .2s; }
+
+    @keyframes wave {
+      0%, 100% { height: 10px; }
+      50% { height: 30px; }
+    }
+
+    .end-call-large {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      border: none;
+      background: #dc2626;
+      color: white;
+      font-size: 25px;
+      margin-top: 15px;
+    }
+
+    /* =========================
+       VIDEOS
+    ========================= */
+
+    .video-search {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .video-search input {
+      flex: 1;
+      border: 1px solid #d5e4e4;
+      border-radius: 13px;
+      padding: 14px;
+      outline: none;
+      background: white;
+    }
+
+    .video-search button {
+      border: none;
+      background: #0f766e;
+      color: white;
+      padding: 0 20px;
+      border-radius: 13px;
+      font-weight: 700;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .video-card {
+      background: white;
+      border: 1px solid #e1eded;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .video-thumbnail {
+      height: 150px;
+      background: linear-gradient(135deg, #ccfbf1, #e0f2fe);
+      display: grid;
+      place-items: center;
+      font-size: 50px;
+    }
+
+    .video-info {
+      padding: 17px;
+    }
+
+    .video-info h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .video-info p {
+      font-size: 13px;
+      color: #697979;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 25px;
+    }
+
+    .step-number {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 15px;
+      display: grid;
+      place-items: center;
+      background: #0f766e;
+      color: white;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 19px;
+    }
+
+    /* =========================
+       SAFETY
+    ========================= */
+
+    .safety {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 20px;
+      padding: 25px;
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .safety-icon {
+      font-size: 28px;
+    }
+
+    .safety h3 {
+      margin-bottom: 6px;
+      color: #9a3412;
+    }
+
+    .safety p {
+      color: #7c4a2d;
+      font-size: 14px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #102a2a;
+      color: #d7e8e8;
+      padding: 50px 20px 25px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 35px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      color: #9fb5b5;
+      font-size: 14px;
+      max-width: 450px;
+    }
+
+    .footer-column h4 {
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #a9c0c0;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .copyright {
+      border-top: 1px solid #294343;
+      padding-top: 20px;
+      text-align: center;
+      color: #819999;
+      font-size: 12px;
+    }
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #102a2a;
+      color: white;
+      padding: 13px 17px;
+      border-radius: 12px;
+      display: none;
+      z-index: 3000;
+      font-size: 14px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+      }
+
+      .features,
+      .video-grid,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        top: 75px;
+        padding: 18px;
+        background: white;
+        border: 1px solid #e5eeee;
+        border-radius: 15px;
+        flex-direction: column;
+        align-items: stretch;
+        box-shadow: 0 20px 40px rgba(0,0,0,.08);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .hero-card {
+        min-height: 360px;
+      }
+
+      .doctor-avatar {
+        width: 160px;
+        height: 160px;
+        font-size: 80px;
+      }
+
+      .features,
+      .video-grid,
+      .steps,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-area {
+        height: 360px;
+      }
+
+      .message {
+        max-width: 88%;
+      }
+
+      .video-search {
+        flex-direction: column;
+      }
+
+      .video-search button {
+        padding: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <a href="#home" class="logo">
+        <div class="logo-icon">🩺</div>
+        <span>Chotelal Clinics</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#chotelal">Chotelal Ji</a>
+        <a href="#videos">Health Videos</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <button class="nav-cta" onclick="openCall()">
+        📞 Call Chotelal Ji
+      </button>
+
+      <button class="menu-btn" onclick="toggleMenu()">
+        ☰
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main id="home">
+
+    <section class="hero">
+
+      <div>
+
+        <div class="badge">
+          ✨ AI-Powered Health Assistant
+        </div>
+
+        <h1>
+          Meet <span>Chotelal Ji</span>,<br />
+          Your AI Health Assistant
+        </h1>
+
+        <p>
+          Apni health ke baare mein baat kijiye, general health information
+          samajhiye aur helpful educational resources explore kijiye —
+          simple Hindi conversation ke saath.
+        </p>
+
+        <div class="hero-buttons">
+
+          <button class="primary-btn" onclick="openCall()">
+            📞 Call Chotelal Ji
+          </button>
+
+          <button class="secondary-btn" onclick="scrollToSection('videos')">
+            ▶️ Health Videos
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <div class="doctor-avatar">
+          👨‍⚕️
+        </div>
+
+        <div class="doctor-card">
+
+          <div>
+            <div class="doctor-name">
+              Chotelal Ji
+            </div>
+
+            <div class="online">
+              <span class="online-dot"></span>
+              AI Health Assistant • Online
+            </div>
+          </div>
+
+          <button class="primary-btn" onclick="openCall()">
+            Call
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div class="badge">
+          What Chotelal Ji Can Do
+        </div>
+
+        <h2>
+          Healthcare information, made simpler
+        </h2>
+
+        <p>
+          A friendly interface designed to help you understand health topics
+          and find useful educational resources.
+        </p>
+
+      </div>
+
+
+      <div class="features">
+
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>AI Health Assistant</h3>
+          <p>
+            Ask general health questions and receive easy-to-understand
+            informational responses.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎙️</div>
+          <h3>Voice Conversation</h3>
+          <p>
+            Designed for a future real-time voice conversation with
+            Chotelal Ji.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Simple Chat</h3>
+          <p>
+            Type your health-related question and start a conversation.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Health Education</h3>
+          <p>
+            Learn about common health topics using simple educational
+            information.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▶️</div>
+          <h3>Health Videos</h3>
+          <p>
+            Search for educational videos related to common health topics.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Available Anytime</h3>
+          <p>
+            The digital assistant interface can be accessed whenever you
+            need information.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CHOTELAL JI
+    ========================== -->
+
+    <section class="doctor-section" id="chotelal">
+
+      <div class="doctor-wrapper">
+
+        <div class="section-header">
+
+          <div class="badge">
+            👨‍⚕️ Chotelal Ji
+          </div>
+
+          <h2>
+            Baat kijiye Chotelal Ji se
+          </h2>
+
+          <p>
+            Neeche demo conversation try kijiye. Real-time AI voice
+            conversation later securely connect ki jayegi.
+          </p>
+
+        </div>
+
+
+        <div class="doctor-interface">
+
+          <div class="doctor-top">
+
+            <div class="doctor-profile">
+
+              <div class="mini-avatar">
+                👨‍⚕️
+              </div>
+
+              <div>
+                <strong>Chotelal Ji</strong>
+
+                <div class="doctor-status">
+                  <span class="online-dot"></span>
+                  AI Health Assistant
+                </div>
+              </div>
+
+            </div>
+
+            <div class="call-status">
+              ● Available
+            </div>
+
+          </div>
+
+
+          <div class="chat-area" id="chatArea">
+
+            <div class="message bot">
+
+              Namaste! 🙏 Main Chotelal Ji hoon.
+              Aap mujhse general health information ke baare mein
+              sawaal pooch sakte hain. Aaj main aapki kaise help kar sakta hoon?
+
+              <span class="message-time">Chotelal Ji</span>
+
+            </div>
+
+          </div>
+
+
+          <div class="chat-input-area">
+
+            <div class="input-row">
+
+              <button
+                class="icon-btn"
+                onclick="startVoice()"
+                title="Voice input"
+              >
+                🎙️
+              </button>
+
+              <input
+                id="chatInput"
+                class="chat-input"
+                type="text"
+                placeholder="Chotelal Ji se kuch poochiye..."
+                onkeydown="handleEnter(event)"
+              />
+
+              <button
+                class="icon-btn send-btn"
+                onclick="sendMessage()"
+                title="Send"
+              >
+                ➤
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="call-controls">
+
+            <div>
+              <button
+                class="call-btn active"
+                onclick="openCall()"
+                title="Call Chotelal Ji"
+              >
+                📞
+              </button>
+              <div class="call-label">Call</div>
+            </div>
+
+            <div>
+              <button
+                class="call-btn"
+                onclick="startVoice()"
+                title="Microphone"
+              >
+                🎙️
+              </button>
+              <div class="call-label">Voice</div>
+            </div>
+
+            <div>
+              <button
+                class="call-btn"
+                onclick="speakLastMessage()"
+                title="Speaker"
+              >
+                🔊
+              </button>
+              <div class="call-label">Speak</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HEALTH VIDEOS
+    ========================== -->
+
+    <section class="section" id="videos">
+
+      <div class="section-header">
+
+        <div class="badge">
+          ▶️ Health Education
+        </div>
+
+        <h2>
+          Health Videos
+        </h2>
+
+        <p>
+          Search a health topic to find educational resources.
+          YouTube integration will be connected in the next version.
+        </p>
+
+      </div>
+
+
+      <div class="video-search">
+
+        <input
+          id="videoSearch"
+          type="text"
+          placeholder="Search: fever, diabetes, headache..."
+          onkeydown="handleVideoEnter(event)"
+        />
+
+        <button onclick="searchVideos()">
+          Search
+        </button>
+
+      </div>
+
+
+      <div class="video-grid" id="videoGrid">
+
+        <div class="video-card">
+          <div class="video-thumbnail">🌡️</div>
+          <div class="video-info">
+            <h3>Fever: Basic Health Information</h3>
+            <p>General educational information about fever.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🩸</div>
+          <div class="video-info">
+            <h3>Understanding Blood Pressure</h3>
+            <p>Learn basic information about blood pressure.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🍎</div>
+          <div class="video-info">
+            <h3>Healthy Lifestyle Basics</h3>
+            <p>General educational health and wellness information.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <section class="section" id="about">
+
+      <div class="section-header">
+
+        <div class="badge">
+          Simple Process
+        </div>
+
+        <h2>
+          How Chotelal Clinics works
+        </h2>
+
+        <p>
+          Health information ko simple aur accessible banane ke liye
+          designed kiya gaya hai.
+        </p>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">1</div>
+
+          <h3>
+            Ask
+          </h3>
+
+          <p>
+            Apna general health question type ya voice mein poochiye.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">2</div>
+
+          <h3>
+            Understand
+          </h3>
+
+          <p>
+            Chotelal Ji aapko easy-to-understand informational response
+            dene ke liye designed hai.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">3</div>
+
+          <h3>
+            Learn
+          </h3>
+
+          <p>
+            Related health education resources aur videos explore kijiye.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SAFETY
+    ========================== -->
+
+    <section class="section">
+
+      <div class="safety">
+
+        <div class="safety-icon">
+          ⚠️
+        </div>
+
+        <div>
+
+          <h3>
+            Important Medical Disclaimer
+          </h3>
+
+          <p>
+            Chotelal Ji ek AI health assistant hai aur qualified doctor ya
+            medical professional ka replacement nahi hai. Is website ki
+            information general educational purposes ke liye hai. Agar
+            symptoms severe, sudden ya life-threatening hain, to qualified
+            medical professional ya local emergency service se turant
+            contact karein.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="section" id="contact">
+
+      <div class="section-header">
+
+        <div class="badge">
+          Chotelal Clinics
+        </div>
+
+        <h2>
+          Health information, made accessible.
+        </h2>
+
+        <p>
+          Chotelal Clinics ka goal technology ke through health education
+          ko simple banana hai.
+        </p>
+
+        <br />
+
+        <button class="primary-btn" onclick="openCall()">
+          📞 Call Chotelal Ji
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="footer-logo">
+            🩺 Chotelal Clinics
+          </div>
+
+          <p>
+            AI-powered health information and educational resources,
+            designed to make health conversations simpler.
+          </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h4>Explore</h4>
+
+          <a href="#home">Home</a>
+          <a href="#chotelal">Chotelal Ji</a>
+          <a href="#videos">Health Videos</a>
+          <a href="#about">About</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h4>Important</h4>
+
+          <a href="#contact">Contact</a>
+          <a href="#home">Privacy</a>
+          <a href="#home">Terms</a>
+          <a href="#home">Medical Disclaimer</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="copyright">
+        © 2026 Chotelal Clinics. All rights reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       CALL MODAL
+  ========================== -->
+
+  <div class="modal" id="callModal">
+
+    <div class="call-window">
+
+      <div class="call-status">
+        ● Connecting
+      </div>
+
+      <div class="call-avatar">
+        👨‍⚕️
+      </div>
+
+      <h2>
+        Chotelal Ji
+      </h2>
+
+      <p id="callText">
+        Hindi voice conversation demo
+      </p>
+
+      <div class="wave" id="wave">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </div>
+
+      <p style="font-size:13px;color:#718181;">
+        Real-time AI voice calling will be connected securely in the next version.
+      </p>
+
+      <button
+        class="end-call-large"
+        onclick="closeCall()"
+        title="End call"
+      >
+        ☎
+      </button>
+
+      <div style="margin-top:8px;font-size:12px;color:#777;">
+        End Call
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="toast" id="toast"></div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("open");
+    }
+
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+
+    /* =========================
+       CALL MODAL
+    ========================== */
+
+    function openCall() {
+
+      document
+        .getElementById("callModal")
+        .classList.add("show");
+
+      document.getElementById("callText").textContent =
+        "Namaste! Main Chotelal Ji hoon. Aapki health ke baare mein baat karne ke liye ready hoon.";
+
+      showToast("Chotelal Ji se call demo started");
+    }
+
+
+    function closeCall() {
+
+      document
+        .getElementById("callModal")
+        .classList.remove("show");
+
+      showToast("Call ended");
+    }
+
+
+    document
+      .getElementById("callModal")
+      .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+          closeCall();
+        }
+
+      });
+
+
+    /* =========================
+       CHAT
+    ========================== */
+
+    const responses = [
+
+      "Samajh gaya. Aap apne symptoms ke baare mein thoda aur bata sakte hain? Main general health information provide karne ki koshish karunga.",
+
+      "Aapko symptoms kab se ho rahe hain? Agar symptoms severe ya rapidly worsening hain, qualified medical professional se contact karna important hai.",
+
+      "Main general health information de sakta hoon, lekin diagnosis confirm nahi kar sakta. Zarurat hone par doctor se proper evaluation karwana best rahega.",
+
+      "Theek hai. Aap apni problem simple words mein bataiye. Main available general health information ke basis par samjhane ki koshish karta hoon.",
+
+      "Agar aapko severe difficulty breathing, loss of consciousness, serious injury ya koi life-threatening emergency ho, to turant local emergency medical help lein."
+
+    ];
+
+
+    function getBotResponse(message) {
+
+      const text = message.toLowerCase();
+
+      if (
+        text.includes("bukhar") ||
+        text.includes("fever")
+      ) {
+        return "Bukhar ke kai possible causes ho sakte hain. Aapko bukhar kitne time se hai aur kya saath mein khansi, gale mein dard ya body pain bhi hai? Main general information de sakta hoon, diagnosis nahi.";
+      }
+
+
+      if (
+        text.includes("sir dard") ||
+        text.includes("headache")
+      ) {
+        return "Sir dard ke kai causes ho sakte hain, jaise stress, dehydration ya doosre factors. Agar headache bahut severe, sudden ya unusual hai, to medical professional se jaldi contact karna important hai.";
+      }
+
+
+      if (
+        text.includes("khansi") ||
+        text.includes("cough")
+      ) {
+        return "Khansi ke different causes ho sakte hain. Aap bata sakte hain ki khansi kab se hai aur kya fever ya breathing difficulty bhi hai?";
+      }
+
+
+      if (
+        text.includes("diabetes")
+      ) {
+        return "Diabetes ek important health condition hai jisme blood glucose monitoring aur professional medical guidance important hoti hai. Main diabetes ke baare mein general educational information provide kar sakta hoon.";
+      }
+
+
+      return responses[
+        Math.floor(Math.random() * responses.length)
+      ];
+
+    }
+
+
+    function addMessage(text, type) {
+
+      const chatArea =
+        document.getElementById("chatArea");
+
+      const message =
+        document.createElement("div");
+
+      message.className =
+        "message " + type;
+
+      const content =
+        document.createTextNode(text);
+
+      message.appendChild(content);
+
+      const time =
+        document.createElement("span");
+
+      time.className =
+        "message-time";
+
+      time.textContent =
+        type === "bot"
+          ? "Chotelal Ji"
+          : "Aap";
+
+      message.appendChild(time);
+
+      chatArea.appendChild(message);
+
+      chatArea.scrollTop =
+        chatArea.scrollHeight;
+
+    }
+
+
+    function sendMessage() {
+
+      const input =
+        document.getElementById("chatInput");
+
+      const text =
+        input.value.trim();
+
+      if (!text) {
+        return;
+      }
+
+      addMessage(text, "user");
+
+      input.value = "";
+
+      setTimeout(function() {
+
+        const response =
+          getBotResponse(text);
+
+        addMessage(response, "bot");
+
+        /* Speak Hindi response if browser supports it */
+        speakText(response);
+
+      }, 700);
+
+    }
+
+
+    function handleEnter(event) {
+
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+
+    }
+
+
+    /* =========================
+       BROWSER VOICE
+    ========================== */
+
+    function startVoice() {
+
+      const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+
+        showToast(
+          "Aapke browser mein voice recognition available nahi hai."
+        );
+
+        return;
+      }
+
+      const recognition =
+        new SpeechRecognition();
+
+      recognition.lang = "hi-IN";
+
+      recognition.interimResults = false;
+
+      recognition.continuous = false;
+
+
+      showToast(
+        "🎙️ Bolna shuru kijiye..."
+      );
+
+
+      recognition.start();
+
+
+      recognition.onresult = function(event) {
+
+        const transcript =
+          event.results[0][0].transcript;
+
+        document.getElementById("chatInput").value =
+          transcript;
+
+        sendMessage();
+
+      };
+
+
+      recognition.onerror = function() {
+
+        showToast(
+          "Voice input start nahi ho paya."
+        );
+
+      };
+
+    }
+
+
+    function speakText(text) {
+
+      if (!("speechSynthesis" in window)) {
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const utterance =
+        new SpeechSynthesisUtterance(text);
+
+      utterance.lang = "hi-IN";
+
+      utterance.rate = 0.95;
+
+      utterance.pitch = 1;
+
+      window.speechSynthesis.speak(
+        utterance
+      );
+
+    }
+
+
+    function speakLastMessage() {
+
+      const messages =
+        document.querySelectorAll(
+          "#chatArea .message.bot"
+        );
+
+      if (!messages.length) {
+        return;
+      }
+
+      const last =
+        messages[messages.length - 1];
+
+      const text =
+        last.childNodes[0].textContent;
+
+      speakText(text);
+
+    }
+
+
+    /* =========================
+       VIDEO SEARCH DEMO
+    ========================== */
+
+    function searchVideos() {
+
+      const input =
+        document.getElementById("videoSearch");
+
+      const query =
+        input.value.trim();
+
+      if (!query) {
+
+        showToast(
+          "Pehle health topic search kijiye."
+        );
+
+        return;
+      }
+
+
+      const grid =
+        document.getElementById("videoGrid");
+
+
+      grid.innerHTML = `
+
+        <div class="video-card">
+
+          <div class="video-thumbnail">
+            🔎
+          </div>
+
+          <div class="video-info">
+
+            <h3>
+              ${escapeHTML(query)} — Health Information
+            </h3>
+
+            <p>
+              YouTube educational search integration
+              next version mein connect ki jayegi.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="video-card">
+
+          <div class="video-thumbnail">
+            📚
+          </div>
+
+          <div class="video-info">
+
+            <h3>
+              Understanding ${escapeHTML(query)}
+            </h3>
+
+            <p>
+              Reliable health education resources
+              yahan display kiye jayenge.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="video-card">
+
+          <div class="video-thumbnail">
+            🩺
+          </div>
+
+          <div class="video-info">
+
+            <h3>
+              ${escapeHTML(query)} — Basics
+            </h3>
+
+            <p>
+              Educational video recommendations
+              coming soon.
+            </p>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    function handleVideoEnter(event) {
+
+      if (event.key === "Enter") {
+        searchVideos();
+      }
+
+    }
+
+
+    function escapeHTML(value) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent = value;
+
+      return div.innerHTML;
+
+    }
+
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById("toast");
+
+      toast.textContent =
+        message;
+
+      toast.classList.add("show");
+
+      setTimeout(function() {
+
+        toast.classList.remove("show");
+
+      }, 3000);
+
+    }
+
+  </script>
+
+</body>
+</html>
