@@ -1,0 +1,2686 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chotelal Clinics - Meet Chotelal Ji, your futuristic AI Health Companion for general health information and guidance." />
+  <title>Chotelal Clinics | Chotelal Ji - AI Health Companion</title>
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & THEMES (Futuristic AI Healthcare Glassmorphism)
+       ========================================================================== */
+    :root {
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+
+      /* Dark Theme (Default) */
+      --bg-base: #070b12;
+      --bg-surface: rgba(14, 23, 38, 0.7);
+      --bg-surface-hover: rgba(22, 36, 60, 0.85);
+      --bg-card: rgba(16, 28, 48, 0.55);
+      --border-color: rgba(0, 229, 255, 0.18);
+      --border-focus: #00e5ff;
+      --text-primary: #f0f6fc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      /* Accent & Neon Palette */
+      --primary: #00e5ff;
+      --primary-glow: rgba(0, 229, 255, 0.35);
+      --primary-dim: rgba(0, 229, 255, 0.12);
+      --secondary: #0077ff;
+      --secondary-glow: rgba(0, 119, 255, 0.35);
+      --accent-teal: #00f2fe;
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.3);
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --danger-glow: rgba(239, 68, 68, 0.4);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --shadow-glass: 0 10px 30px 0 rgba(0, 0, 0, 0.4);
+      --shadow-neon: 0 0 25px var(--primary-glow);
+      --transition-fast: 0.2s ease;
+      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-base: #f4f8fb;
+      --bg-surface: rgba(255, 255, 255, 0.85);
+      --bg-surface-hover: rgba(240, 246, 252, 0.95);
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --border-color: rgba(0, 119, 255, 0.18);
+      --border-focus: #0077ff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+
+      --primary: #0077ff;
+      --primary-glow: rgba(0, 119, 255, 0.25);
+      --primary-dim: rgba(0, 119, 255, 0.08);
+      --secondary: #00c6ff;
+      --secondary-glow: rgba(0, 198, 255, 0.25);
+      --shadow-glass: 0 10px 30px 0 rgba(0, 30, 80, 0.08);
+      --shadow-neon: 0 4px 20px rgba(0, 119, 255, 0.18);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    }
+
+    /* Background Ambient Tech Glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      opacity: 0.25;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -15%;
+      right: 5%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
+      opacity: 0.2;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--text-primary);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--text-secondary);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input {
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      cursor: pointer;
+      user-select: none;
+      transition: all var(--transition-fast);
+    }
+
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 10px var(--success);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+
+    /* Glassmorphism Card Utility */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-glass);
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 20px var(--primary-dim);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #050b14;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px var(--primary-glow), 0 8px 18px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-hover);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #fff;
+      box-shadow: 0 0 20px var(--danger-glow);
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+      transform: scale(1.03);
+    }
+
+    .btn-icon {
+      padding: 0.75rem;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1/1;
+    }
+
+    .btn-icon:hover {
+      background: var(--primary-dim);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 11, 18, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+    }
+
+    [data-theme="light"] .navbar {
+      background: rgba(244, 248, 251, 0.85);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #040810;
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .brand-text span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      padding: 0.5rem;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+
+    /* Mobile Menu Drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-surface);
+      backdrop-filter: blur(25px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 1.25rem;
+      z-index: 999;
+      box-shadow: var(--shadow-glass);
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding: 6rem 0 4rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subheadline {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      color: var(--primary);
+      font-family: var(--font-heading);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      width: 100%;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .trust-item svg {
+      color: var(--primary);
+    }
+
+    /* AI Avatar Graphic with Orbital Rings */
+    .hero-avatar-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .orbit-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed var(--border-color);
+      pointer-events: none;
+    }
+
+    .orbit-1 {
+      width: 100%;
+      height: 100%;
+      border-color: rgba(0, 229, 255, 0.25);
+      animation: spin 30s linear infinite;
+    }
+
+    .orbit-2 {
+      width: 78%;
+      height: 78%;
+      border: 1px solid rgba(0, 119, 255, 0.25);
+      animation: spin-reverse 20s linear infinite;
+    }
+
+    .orbit-particle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 15px var(--primary);
+      transform: translate(-50%, -50%);
+    }
+
+    .ai-avatar-core {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #0e1c31, #060a12);
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 35px var(--primary-glow), inset 0 0 20px var(--primary-dim);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .ai-avatar-visual {
+      font-size: 4rem;
+      filter: drop-shadow(0 0 10px var(--primary-glow));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .avatar-status-pill {
+      position: absolute;
+      bottom: -15px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 0.3rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-glass);
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       5. CHAT & AI DOCTOR INTERACTION SECTION
+       ========================================================================== */
+    .chat-section {
+      position: relative;
+    }
+
+    .chat-card {
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 680px;
+    }
+
+    .chat-header {
+      padding: 1.25rem 1.75rem;
+      background: rgba(14, 23, 38, 0.8);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-doc-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .chat-doc-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--primary-dim);
+      border: 1.5px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .chat-doc-avatar .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 10px;
+      height: 10px;
+      background: var(--success);
+      border-radius: 50%;
+      border: 2px solid var(--bg-base);
+    }
+
+    .chat-doc-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .chat-doc-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .chat-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      scroll-behavior: smooth;
+    }
+
+    .message-row {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 80%;
+      animation: message-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .message-row.ai {
+      align-self: flex-start;
+    }
+
+    .message-row.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+
+    .message-row.ai .message-avatar {
+      background: var(--primary-dim);
+      border: 1px solid var(--primary);
+    }
+
+    .message-row.user .message-avatar {
+      background: var(--secondary);
+      color: #fff;
+    }
+
+    .message-bubble {
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .message-row.ai .message-bubble {
+      background: rgba(22, 36, 60, 0.75);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-top-left-radius: 4px;
+      color: var(--text-primary);
+    }
+
+    .message-row.user .message-bubble {
+      background: linear-gradient(135deg, var(--secondary) 0%, #0055cc 100%);
+      color: #ffffff;
+      border-top-right-radius: 4px;
+    }
+
+    .message-time {
+      display: block;
+      font-size: 0.7rem;
+      margin-top: 0.4rem;
+      opacity: 0.65;
+    }
+
+    .message-speak-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border-radius: var(--radius-full);
+      margin-top: 0.5rem;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    .message-speak-btn:hover {
+      background: rgba(0, 229, 255, 0.25);
+    }
+
+    /* Typing Animation Indicator */
+    .typing-indicator {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      padding: 0.75rem 1.2rem;
+      background: rgba(22, 36, 60, 0.6);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: var(--radius-md);
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+
+    .typing-indicator.active {
+      display: flex;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    /* Chat Input Bar */
+    .chat-input-area {
+      padding: 1.25rem 1.5rem;
+      background: rgba(14, 23, 38, 0.85);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.25rem;
+      font-size: 0.95rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .chat-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-dim);
+    }
+
+    .mic-btn {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .mic-btn.listening {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+      box-shadow: 0 0 20px var(--danger-glow);
+      animation: pulse-mic 1.5s infinite;
+    }
+
+    .send-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #040810;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .send-btn:hover {
+      box-shadow: 0 0 20px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    .listening-toast {
+      display: none;
+      position: absolute;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      color: var(--primary);
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 10;
+    }
+
+    .listening-toast.active {
+      display: flex;
+    }
+
+    /* ==========================================================================
+       6. HEALTH TOPIC CARDS GRID
+       ========================================================================== */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .topic-card {
+      padding: 1.75rem 1.5rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .topic-card:hover::before {
+      opacity: 1;
+    }
+
+    .topic-icon {
+      font-size: 2.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .topic-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .topic-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .topic-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    /* ==========================================================================
+       7. HEALTH VIDEOS SECTION (YouTube Architecture)
+       ========================================================================== */
+    .video-search-container {
+      max-width: 650px;
+      margin: 0 auto 3rem;
+      position: relative;
+    }
+
+    .video-search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 0.4rem 0.5rem 0.4rem 1.5rem;
+      box-shadow: var(--shadow-glass);
+      transition: border-color var(--transition-fast);
+    }
+
+    .video-search-bar:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 20px var(--primary-dim);
+    }
+
+    .video-input {
+      flex: 1;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .video-search-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .video-search-btn:hover {
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-thumbnail-box {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #0f1c30 0%, #060b13 100%);
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-play-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.85);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      transition: transform var(--transition-fast);
+    }
+
+    .video-card:hover .video-play-icon {
+      transform: scale(1.15);
+    }
+
+    .video-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+
+    .video-tag {
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .video-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .video-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       8. ABOUT SECTION
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+    }
+
+    .feature-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-dim);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+    }
+
+    /* ==========================================================================
+       9. MEDICAL SAFETY DISCLAIMER
+       ========================================================================== */
+    .disclaimer-banner {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .disclaimer-icon {
+      font-size: 2.25rem;
+      color: var(--warning);
+      flex-shrink: 0;
+    }
+
+    .disclaimer-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--warning);
+      margin-bottom: 0.5rem;
+    }
+
+    .disclaimer-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       10. FULL-SCREEN CALL INTERFACE (MODAL)
+       ========================================================================== */
+    .call-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: radial-gradient(circle at center, #0a1324 0%, #03060a 100%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 1.5rem;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+    }
+
+    .call-modal.active {
+      display: flex;
+      animation: modal-fade-in 0.4s ease forwards;
+    }
+
+    .call-header {
+      text-align: center;
+      z-index: 10;
+    }
+
+    .call-app-name {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .call-demo-badge {
+      display: inline-block;
+      padding: 0.2rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .call-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 600px;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .call-avatar-outer {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .call-ripple {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .call-avatar-outer.speaking .call-ripple {
+      animation: ripple 2s infinite cubic-bezier(0.1, 0.2, 0.3, 1);
+    }
+
+    .call-avatar-outer.speaking .call-ripple:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .call-avatar-core {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0e1c31 0%, #060a12 100%);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 40px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      z-index: 2;
+    }
+
+    .call-doc-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .call-status-label {
+      font-size: 0.95rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Real-Time Waveform Graphic */
+    .waveform-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      height: 50px;
+      width: 100%;
+    }
+
+    .wave-bar {
+      width: 4px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: height 0.15s ease;
+    }
+
+    .call-modal.speaking .wave-bar {
+      animation: wave-anim 1s ease-in-out infinite;
+    }
+
+    .call-modal.speaking .wave-bar:nth-child(odd) { animation-delay: 0.2s; }
+    .call-modal.speaking .wave-bar:nth-child(3n) { animation-delay: 0.4s; }
+    .call-modal.speaking .wave-bar:nth-child(4n) { animation-delay: 0.1s; }
+
+    .call-transcript-box {
+      width: 100%;
+      background: rgba(14, 23, 38, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .call-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      z-index: 10;
+    }
+
+    .call-btn-circle {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-glass);
+    }
+
+    .call-btn-circle:hover {
+      background: var(--bg-surface-hover);
+      border-color: var(--primary);
+      transform: scale(1.08);
+    }
+
+    .call-btn-circle.active-mute {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+      box-shadow: 0 0 25px var(--danger-glow);
+    }
+
+    .call-btn-end {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--danger);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 0 30px var(--danger-glow);
+    }
+
+    .call-btn-end:hover {
+      transform: scale(1.1);
+      background: #dc2626;
+    }
+
+    /* ==========================================================================
+       11. FOOTER
+       ========================================================================== */
+    .footer {
+      background: #03060a;
+      border-top: 1px solid var(--border-color);
+      padding: 4rem 0 2rem;
+      margin-top: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    [data-theme="light"] .footer {
+      background: #eef4f9;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       12. KEYFRAME ANIMATIONS
+       ========================================================================== */
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes spin-reverse {
+      100% { transform: rotate(-360deg); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    @keyframes pulse-mic {
+      0%, 100% { box-shadow: 0 0 10px var(--danger-glow); }
+      50% { box-shadow: 0 0 30px var(--danger-glow); }
+    }
+
+    @keyframes message-pop {
+      0% { opacity: 0; transform: translateY(12px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    @keyframes ripple {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    @keyframes wave-anim {
+      0%, 100% { height: 8px; }
+      50% { height: 42px; }
+    }
+
+    @keyframes modal-fade-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ==========================================================================
+       13. RESPONSIVE BREAKPOINTS (320px, 425px, 768px, 1024px)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-grid, .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+      .hero-content {
+        align-items: center;
+      }
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-trust {
+        justify-content: center;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions .btn-primary {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .chat-card {
+        height: 600px;
+      }
+      .message-row {
+        max-width: 90%;
+      }
+      .call-avatar-outer {
+        width: 140px;
+        height: 140px;
+      }
+      .call-avatar-core {
+        width: 110px;
+        height: 110px;
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 425px) {
+      .hero-headline {
+        font-size: 2.2rem;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-cta-group .btn {
+        width: 100%;
+      }
+      .chat-header {
+        padding: 1rem;
+      }
+      .chat-input-area {
+        padding: 0.75rem;
+      }
+      .disclaimer-banner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand" aria-label="Chotelal Clinics Home">
+        <div class="brand-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/>
+          </svg>
+        </div>
+        <div class="brand-text">Chotelal <span>Clinics</span></div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active" data-i18n="nav_home">Home</a></li>
+          <li><a href="#ai-doctor" class="nav-link" data-i18n="nav_doctor">Chotelal Ji</a></li>
+          <li><a href="#topics" class="nav-link" data-i18n="nav_topics">Health Topics</a></li>
+          <li><a href="#videos" class="nav-link" data-i18n="nav_videos">Health Videos</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav_about">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <button id="langToggleBtn" class="btn-icon" aria-label="Switch Language" title="Toggle Hindi / English">
+          <span id="langLabel" style="font-weight: 700; font-size: 0.8rem;">EN</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
+          <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="themeIconMoon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- Main Call CTA -->
+        <button class="btn btn-primary" onclick="openCallModal()" aria-label="Call Chotelal Ji">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="cta_call">Call Chotelal Ji</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Mobile Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" class="nav-link mobile-link" data-i18n="nav_home">Home</a>
+      <a href="#ai-doctor" class="nav-link mobile-link" data-i18n="nav_doctor">Chotelal Ji</a>
+      <a href="#topics" class="nav-link mobile-link" data-i18n="nav_topics">Health Topics</a>
+      <a href="#videos" class="nav-link mobile-link" data-i18n="nav_videos">Health Videos</a>
+      <a href="#about" class="nav-link mobile-link" data-i18n="nav_about">About</a>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" onclick="openCallModal(); toggleMobileMenu();">
+        📞 <span data-i18n="cta_call">Call Chotelal Ji</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section id="home" class="hero section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              <span data-i18n="badge_online">Chotelal Ji — AI Health Assistant Online</span>
+            </div>
+
+            <h1 class="hero-headline" data-i18n="hero_headline">Meet Chotelal Ji</h1>
+            <h2 class="hero-subheadline" data-i18n="hero_subheadline">Your AI Health Companion</h2>
+            
+            <p class="hero-description" data-i18n="hero_desc">
+              Chotelal Ji provides general health information, wellness awareness, and educational guidance through smart voice and text conversations anytime.
+            </p>
+
+            <div class="hero-cta-group">
+              <button class="btn btn-primary" onclick="openCallModal()" aria-label="Call Chotelal Ji Now">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span data-i18n="hero_cta_call">📞 Call Chotelal Ji</span>
+              </button>
+
+              <a href="#ai-doctor" class="btn btn-secondary" aria-label="Start Text Conversation">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span data-i18n="hero_cta_chat">💬 Start Conversation</span>
+              </a>
+            </div>
+
+            <div class="hero-trust">
+              <div class="trust-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span data-i18n="trust_safe">Private & Local</span>
+              </div>
+              <div class="trust-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span data-i18n="trust_avail">24/7 Available</span>
+              </div>
+              <div class="trust-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span data-i18n="trust_hindi">Hindi & English</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Futuristic AI Doctor Holographic Avatar -->
+          <div class="hero-avatar-wrapper">
+            <div class="orbit-container">
+              <div class="orbit-ring orbit-1">
+                <div class="orbit-particle"></div>
+              </div>
+              <div class="orbit-ring orbit-2"></div>
+              
+              <div class="ai-avatar-core">
+                <div class="ai-avatar-visual">👨‍⚕️</div>
+                <div class="avatar-status-pill">
+                  <span class="badge-dot"></span>
+                  <span>Chotelal Ji AI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         AI DOCTOR INTERACTION SECTION ("Talk to Chotelal Ji")
+         ========================================================================== -->
+    <section id="ai-doctor" class="chat-section section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge" data-i18n="badge_chat">Interactive AI Doctor</div>
+          <h2 class="section-title" data-i18n="title_talk">Talk to Chotelal Ji</h2>
+          <p class="section-desc" data-i18n="desc_talk">Ask any general health question in Hindi or English using voice or text.</p>
+        </div>
+
+        <div class="glass-card chat-card">
+          <!-- Chat Header -->
+          <div class="chat-header">
+            <div class="chat-doc-info">
+              <div class="chat-doc-avatar">
+                👨‍⚕️
+                <span class="status-dot"></span>
+              </div>
+              <div>
+                <div class="chat-doc-title">Chotelal Ji</div>
+                <div class="chat-doc-subtitle" data-i18n="chat_subtitle">AI Health Assistant • Online</div>
+              </div>
+            </div>
+
+            <div class="chat-header-actions">
+              <button class="btn-icon" onclick="clearChatHistory()" title="Clear Conversation" aria-label="Clear chat conversation">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+              <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="openCallModal()" aria-label="Open Call Chotelal Ji Mode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span data-i18n="chat_btn_call">Call</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Messages Container -->
+          <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+            <!-- Initial Greeting -->
+            <div class="message-row ai">
+              <div class="message-avatar">👨‍⚕️</div>
+              <div>
+                <div class="message-bubble">
+                  Namaste! 🙏 Main Chotelal Ji hoon, aapka AI Health Companion. Aap mujhse kisi bhi general health topic (jaise fever, headache, diabetes, nutrition) ke baare mein pooch sakte hain.
+                  <button class="message-speak-btn" onclick="speakText(this.parentElement.textContent.replace('🔊 Speak',''))" aria-label="Listen to message in voice">
+                    🔊 Speak
+                  </button>
+                </div>
+                <span class="message-time" id="initTime">Just now</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typing Indicator -->
+          <div class="typing-indicator" id="typingIndicator">
+            <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: 4px;">Chotelal Ji soch rahe hain</span>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+
+          <!-- Listening Toast Banner -->
+          <div class="listening-toast" id="listeningToast">
+            <span class="badge-dot"></span>
+            <span data-i18n="toast_listening">Main sun raha hoon... Kripya boliye</span>
+          </div>
+
+          <!-- Chat Input Controls -->
+          <form class="chat-input-area" id="chatForm" onsubmit="handleChatSubmit(event)">
+            <button type="button" class="mic-btn" id="micBtn" onclick="toggleVoiceInput()" title="Voice input in Hindi" aria-label="Toggle Hindi microphone input">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </button>
+
+            <input type="text" id="chatInput" class="chat-input" placeholder="Type symptoms or health query (e.g., Fever relief, BP tips)..." autocomplete="off" aria-label="Health question text input" />
+
+            <button type="submit" class="send-btn" title="Send Question" aria-label="Send health question">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         HEALTH TOPIC CARDS SECTION
+         ========================================================================== -->
+    <section id="topics" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge" data-i18n="badge_topics">Knowledge Base</div>
+          <h2 class="section-title" data-i18n="title_topics">Explore Health Topics</h2>
+          <p class="section-desc" data-i18n="desc_topics">Click any wellness category to ask Chotelal Ji or find educational videos instantly.</p>
+        </div>
+
+        <div class="topics-grid">
+          <!-- Card 1 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Heart Health', 'हार्ट स्वास्थ्य को बेहतर कैसे रखें?')">
+            <div class="topic-icon">❤️</div>
+            <div class="topic-title" data-i18n="topic_heart">Heart Health</div>
+            <div class="topic-desc" data-i18n="topic_heart_desc">Cardiovascular care, blood circulation, and heart-friendly lifestyle habits.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Diabetes', 'डायबिटीज में क्या खाना चाहिए और क्या नहीं?')">
+            <div class="topic-icon">🩸</div>
+            <div class="topic-title" data-i18n="topic_diabetes">Diabetes Care</div>
+            <div class="topic-desc" data-i18n="topic_diabetes_desc">Blood sugar regulation, HbA1c guidance, and low glycemic diet tips.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Fever & Viral', 'बुखार और सर्दी जुकाम में तुरंत क्या करें?')">
+            <div class="topic-icon">🌡️</div>
+            <div class="topic-title" data-i18n="topic_fever">Fever & Viral</div>
+            <div class="topic-desc" data-i18n="topic_fever_desc">Understanding body temperature spikes, hydration, and warning flags.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Mental Wellness', 'तनाव और चिंता को कम करने के उपाय')">
+            <div class="topic-icon">🧠</div>
+            <div class="topic-title" data-i18n="topic_mental">Mental Wellness</div>
+            <div class="topic-desc" data-i18n="topic_mental_desc">Stress management, anxiety alleviation, mindfulness, and mental peace.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Nutrition & Diet', 'दैनिक स्वस्थ आहार और विटामिन की जानकारी')">
+            <div class="topic-icon">🥗</div>
+            <div class="topic-title" data-i18n="topic_nutrition">Nutrition & Diet</div>
+            <div class="topic-desc" data-i18n="topic_nutrition_desc">Balanced macro-nutrients, essential vitamins, and gut health care.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Fitness & Movement', 'दैनिक व्यायाम और शरीर को फिट रखने के नियम')">
+            <div class="topic-icon">💪</div>
+            <div class="topic-title" data-i18n="topic_fitness">Fitness & Exercise</div>
+            <div class="topic-desc" data-i18n="topic_fitness_desc">Simple daily workouts, mobility exercises, and metabolic stamina.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Sleep Quality', 'गहरी और अच्छी नींद के लिए क्या करें?')">
+            <div class="topic-icon">😴</div>
+            <div class="topic-title" data-i18n="topic_sleep">Sleep Hygiene</div>
+            <div class="topic-desc" data-i18n="topic_sleep_desc">Circadian rhythm optimization, melatonin support, and rest rituals.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="glass-card topic-card" onclick="selectTopic('Respiratory Health', 'सांस की तकलीफ और फेफड़ों को मजबूत करने के उपाय')">
+            <div class="topic-icon">🫁</div>
+            <div class="topic-title" data-i18n="topic_resp">Respiratory Health</div>
+            <div class="topic-desc" data-i18n="topic_resp_desc">Lung capacity, breathing exercises, and combating air pollution effects.</div>
+            <div class="topic-action"><span data-i18n="topic_btn">Explore Topic</span> →</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         HEALTH VIDEOS SECTION (YouTube Integration Ready)
+         ========================================================================== -->
+    <section id="videos" class="section" style="background: rgba(10, 18, 32, 0.4);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge" data-i18n="badge_videos">Video Library</div>
+          <h2 class="section-title" data-i18n="title_videos">Educational Health Videos</h2>
+          <p class="section-desc" data-i18n="desc_videos">Search validated medical education topics and watch verified clinical explanations.</p>
+        </div>
+
+        <!-- YouTube Ready Search Interface -->
+        <div class="video-search-container">
+          <form class="video-search-bar" onsubmit="handleVideoSearch(event)">
+            <input type="text" id="videoQueryInput" class="video-input" placeholder="Search topics (e.g., Blood Pressure, Fever Care)..." />
+            <button type="submit" class="video-search-btn" aria-label="Search Educational Videos on YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span data-i18n="btn_yt_search">Search YouTube</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Curated Topic Video Cards -->
+        <div class="video-grid" id="videoResultsGrid">
+          <div class="glass-card video-card" onclick="openYouTubeTopic('High Blood Pressure management educational guidance')">
+            <div class="video-thumbnail-box">
+              <div class="video-play-icon">▶</div>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Cardiology</span>
+              <h3 class="video-title">Understanding High Blood Pressure & Prevention</h3>
+              <p class="video-desc">Learn about primary causes of hypertension and simple daily dietary modifications.</p>
+            </div>
+          </div>
+
+          <div class="glass-card video-card" onclick="openYouTubeTopic('Diabetes glucose monitoring and diet educational guide')">
+            <div class="video-thumbnail-box">
+              <div class="video-play-icon">▶</div>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Endocrinology</span>
+              <h3 class="video-title">Managing Blood Sugar Levels with Diet</h3>
+              <p class="video-desc">Overview of glycemic index foods, HbA1c benchmarks, and insulin awareness.</p>
+            </div>
+          </div>
+
+          <div class="glass-card video-card" onclick="openYouTubeTopic('Fever remedies and hydration medical warning flags')">
+            <div class="video-thumbnail-box">
+              <div class="video-play-icon">▶</div>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">General Medicine</span>
+              <h3 class="video-title">Fever Care at Home & When to Consult a Doctor</h3>
+              <p class="video-desc">Temperature management thresholds, hydration techniques, and identifying emergency red flags.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT SECTION
+         ========================================================================== -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <div class="badge" data-i18n="badge_about">Our Mission</div>
+            <h2 class="section-title" data-i18n="title_about">What is Chotelal Clinics?</h2>
+            <p class="section-desc" style="margin-bottom: 1.5rem;" data-i18n="desc_about">
+              Chotelal Clinics was created with a clear objective: <strong>"Making health information easier to understand and access through AI."</strong>
+            </p>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;" data-i18n="desc_about_p2">
+              Chotelal Ji serves as an intuitive digital companion that translates medical jargon into clear Hindi and English explanations, helping individuals make informed lifestyle choices before seeing their physician.
+            </p>
+            <div class="badge" style="background: rgba(245, 158, 11, 0.1); color: var(--warning); border-color: rgba(245, 158, 11, 0.3);">
+              ⚠️ Educational AI • Not a Certified Medical Practitioner
+            </div>
+          </div>
+
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A7 7 0 0 1 5.07 11H5a1 1 0 0 1 0-2h.07A7 7 0 0 1 11 3.07V3a1 1 0 0 1 2 0v.07A7 7 0 0 1 18.93 9H19a1 1 0 0 1 0 2h-.07A7 7 0 0 1 13 16.93z"/></svg>
+              </div>
+              <div>
+                <div class="feature-title" data-i18n="feat_1_t">Instant Symptom Clarity</div>
+                <div class="feature-desc" data-i18n="feat_1_d">Discuss symptoms and receive structured general wellness advice within seconds.</div>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+              </div>
+              <div>
+                <div class="feature-title" data-i18n="feat_2_t">Hindi-First Voice Experience</div>
+                <div class="feature-desc" data-i18n="feat_2_d">Speak naturally in Hindi with browser speech recognition for hands-free queries.</div>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="feature-title" data-i18n="feat_3_t">Privacy Minded & Zero Key Leaks</div>
+                <div class="feature-desc" data-i18n="feat_3_d">Operates cleanly on static hosting without demanding sensitive patient data.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Medical Safety Warning -->
+        <div class="disclaimer-banner">
+          <div class="disclaimer-icon">⚠️</div>
+          <div>
+            <div class="disclaimer-title" data-i18n="disc_title">Official Medical & Emergency Safety Notice</div>
+            <p class="disclaimer-text" data-i18n="disc_text">
+              Chotelal Ji is an artificial intelligence health assistant designed for informational and educational purposes only. It is <strong>NOT</strong> a replacement for a qualified doctor, clinical diagnosis, or emergency medical service. If you are experiencing sudden, severe, or life-threatening symptoms (such as chest pressure, acute difficulty breathing, severe bleeding, or loss of consciousness), please contact local emergency services (112 / 108 / 911) or visit the nearest hospital emergency room immediately.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FULL-SCREEN "CALL CHOTELAL JI" INTERFACE
+       ========================================================================== -->
+  <div class="call-modal" id="callModal" role="dialog" aria-modal="true" aria-label="AI Voice Call with Chotelal Ji">
+    <div class="call-header">
+      <div class="call-app-name">Chotelal Clinics • Voice Assistant</div>
+      <div class="call-demo-badge">AI Voice Interaction Mode</div>
+    </div>
+
+    <div class="call-center">
+      <div class="call-avatar-outer" id="callAvatarContainer">
+        <div class="call-ripple"></div>
+        <div class="call-ripple"></div>
+        <div class="call-avatar-core">👨‍⚕️</div>
+      </div>
+
+      <div>
+        <div class="call-doc-name">Chotelal Ji</div>
+        <div class="call-status-label" id="callStatusLabel">
+          <span class="badge-dot"></span>
+          <span id="callStatusText">Connected • Listening</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Animated Waveform -->
+      <div class="waveform-box" id="waveformBox">
+        <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      </div>
+
+      <!-- Call Live Transcript Box -->
+      <div class="call-transcript-box" id="callTranscript">
+        "Namaste! Main Chotelal Ji hoon. Aap apne lakshan boliye, main sun raha hoon..."
+      </div>
+    </div>
+
+    <!-- Call Action Controls -->
+    <div class="call-controls">
+      <button class="call-btn-circle" id="callMuteBtn" onclick="toggleCallMute()" title="Mute Microphone" aria-label="Mute microphone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
+
+      <button class="call-btn-end" onclick="endCall()" title="End Call with Chotelal Ji" aria-label="End call">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+      </button>
+
+      <button class="call-btn-circle" id="callSpeakerBtn" onclick="toggleCallSpeaker()" title="Toggle Speaker" aria-label="Toggle speaker sound">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="brand-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+            </div>
+            <div class="brand-text">Chotelal <span>Clinics</span></div>
+          </div>
+          <p data-i18n="footer_tagline">Your AI Health Companion — accessible health guidance for everyone through cutting-edge artificial intelligence.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_quick_links">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#ai-doctor" data-i18n="nav_doctor">Chotelal Ji AI Doctor</a></li>
+            <li><a href="#topics" data-i18n="nav_topics">Health Categories</a></li>
+            <li><a href="#videos" data-i18n="nav_videos">Health Videos</a></li>
+            <li><a href="#about" data-i18n="nav_about">About Platform</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_legal">Safety & Policy</h4>
+          <ul class="footer-links">
+            <li><a href="#about" data-i18n="footer_disc">Medical Disclaimer</a></li>
+            <li><a href="#about" data-i18n="footer_priv">Privacy & Storage Notice</a></li>
+            <li><a href="#about" data-i18n="footer_terms">Terms of AI Usage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Chotelal Clinics. All rights reserved.</div>
+        <div data-i18n="footer_sub">Created for general informational health awareness.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT ARCHITECTURE
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       1. GLOBAL STATE & LOCAL STORAGE
+       ========================================================================== */
+    const AppState = {
+      theme: localStorage.getItem('cc_theme') || 'dark',
+      lang: localStorage.getItem('cc_lang') || 'hi',
+      isListening: false,
+      isSpeaking: false,
+      callActive: false,
+      callMuted: false,
+      callSpeaker: true,
+      recognitionInstance: null,
+      callRecognitionInstance: null
+    };
+
+    /* ==========================================================================
+       2. TRANSLATION DICTIONARY (Hindi & English)
+       ========================================================================== */
+    const I18N = {
+      hi: {
+        nav_home: "Home",
+        nav_doctor: "Chotelal Ji",
+        nav_topics: "हेल्थ टॉपिक्स",
+        nav_videos: "हेल्थ वीडियो",
+        nav_about: "About",
+        cta_call: "Call Chotelal Ji",
+        badge_online: "छोटालाल जी — AI स्वास्थ्य सहायक ऑनलाइन",
+        hero_headline: "Meet Chotelal Ji",
+        hero_subheadline: "आपका AI हेल्थ साथी",
+        hero_desc: "छोटालाल जी आपको किसी भी समय वॉइस और टेक्स्ट बातचीत के माध्यम से सामान्य स्वास्थ्य जानकारी और प्राथमिक मार्गदर्शन प्रदान करते हैं।",
+        hero_cta_call: "📞 Call Chotelal Ji",
+        hero_cta_chat: "💬 बातचीत शुरू करें",
+        trust_safe: "सुरक्षित व लोकल",
+        trust_avail: "24/7 उपलब्ध",
+        trust_hindi: "हिंदी और English",
+        badge_chat: "इंटरएक्टिव AI डॉक्टर",
+        title_talk: "छोटालाल जी से बात करें",
+        desc_talk: "हिंदी या अंग्रेजी में कोई भी सामान्य स्वास्थ्य प्रश्न पूछें।",
+        chat_subtitle: "AI स्वास्थ्य सहायक • ऑनलाइन",
+        chat_btn_call: "कॉल करें",
+        toast_listening: "मैं सुन रहा हूँ... कृपया बोलिए",
+        badge_topics: "स्वास्थ्य ज्ञानकोष",
+        title_topics: "स्वास्थ्य विषय चुनें",
+        desc_topics: "छोटालाल जी से तुरंत पूछने या वीडियो देखने के लिए किसी भी विषय पर क्लिक करें।",
+        topic_heart: "हार्ट स्वास्थ्य",
+        topic_heart_desc: "हृदय की देखभाल, रक्त संचार और स्वस्थ जीवनशैली के नियम।",
+        topic_diabetes: "डायबिटीज (मधुमेह)",
+        topic_diabetes_desc: "रक्त शर्करा नियंत्रण, खान-पान और HbA1c की जानकारी।",
+        topic_fever: "बुखार व वायरल",
+        topic_fever_desc: "तापमान नियंत्रण, पानी की पूर्ति और जरूरी सावधानियां।",
+        topic_mental: "मानसिक शांति व तनाव",
+        topic_mental_desc: "तनाव प्रबंधन, गहरी नींद और मन को शांत रखने के उपाय।",
+        topic_nutrition: "आहार व पोषण",
+        topic_nutrition_desc: "संतुलित भोजन, जरूरी विटामिन्स और पेट की सेहत।",
+        topic_fitness: "व्यायाम व फिटनेस",
+        topic_fitness_desc: "दैनिक हल्का वर्कआउट और शरीर में ऊर्जा बनाए रखने के तरीके।",
+        topic_sleep: "गहरी नींद (Sleep)",
+        topic_sleep_desc: "अच्छी नींद के नियम और मेलाटोनिन संतुलन।",
+        topic_resp: "श्वसन व फेफड़े",
+        topic_resp_desc: "फेफड़ों की क्षमता और प्रदूषण से बचाव के उपाय।",
+        topic_btn: "जानकारी देखें",
+        badge_videos: "वीडियो लाइब्रेरी",
+        title_videos: "स्वास्थ्य शिक्षा वीडियो",
+        desc_videos: "YouTube पर प्रमाणित डॉक्टरों और स्वास्थ्य विशेषज्ञों के वीडियो खोजें।",
+        btn_yt_search: "Search YouTube",
+        badge_about: "हमारा उद्देश्य",
+        title_about: "Chotelal Clinics क्या है?",
+        desc_about: "Chotelal Clinics का मुख्य उद्देश्य है: 'स्वास्थ्य जानकारी को AI द्वारा सभी के लिए आसान और सुलभ बनाना।'",
+        desc_about_p2: "छोटालाल जी एक आधुनिक डिजिटल साथी हैं जो कठिन मेडिकल भाषा को सरल हिंदी में समझाते हैं ताकि आप डॉक्टर के पास जाने से पहले सही जानकारी रख सकें।",
+        feat_1_t: "तुरंत लक्षणों की समझ",
+        feat_1_d: "अपने लक्षण बताएं और सेकंडों में सामान्य प्राथमिक सलाह पाएं।",
+        feat_2_t: "हिंदी वॉइस सपोर्ट",
+        feat_2_d: "सीधे हिंदी में बोलकर बिना टाइप किए सवाल पूछें।",
+        feat_3_t: "गोपनीय और सुरक्षित",
+        feat_3_d: "बिना किसी संवेदनशील डेटा संग्रह के सुरक्षित स्टैटिक अनुभव।",
+        disc_title: "आधिकारिक चिकित्सा एवं आपातकालीन चेतावनी",
+        disc_text: "छोटालाल जी एक आर्टिफिशियल इंटेलिजेंस स्वास्थ्य सहायक हैं और यह केवल सामान्य जागरूकता के लिए हैं। यह किसी डॉक्टर, मेडिकल जांच या इमरजेंसी सर्विस का विकल्प नहीं हैं। गंभीर या अचानक उत्पन्न लक्षणों (जैसे सीने में दर्द, सांस लेने में तकलीफ या बेहोशी) में तुरंत 112/108 पर कॉल करें या नजदीकी अस्पताल जाएं।",
+        footer_tagline: "आपका AI हेल्थ साथी — आधुनिक तकनीक द्वारा हर व्यक्ति के लिए सुलभ स्वास्थ्य मार्गदर्शन।",
+        footer_quick_links: "नेविगेशन",
+        footer_legal: "सुरक्षा व नीतियां",
+        footer_disc: "मेडिकल डिस्क्लेमर",
+        footer_priv: "प्राइवेसी व स्टोरेज",
+        footer_terms: "उपयोग की शर्तें",
+        footer_sub: "सामान्य स्वास्थ्य जागरूकता के लिए निर्मित।"
+      },
+      en: {
+        nav_home: "Home",
+        nav_doctor: "Chotelal Ji",
+        nav_topics: "Health Topics",
+        nav_videos: "Health Videos",
+        nav_about: "About",
+        cta_call: "Call Chotelal Ji",
+        badge_online: "Chotelal Ji — AI Health Assistant Online",
+        hero_headline: "Meet Chotelal Ji",
+        hero_subheadline: "Your AI Health Companion",
+        hero_desc: "Chotelal Ji provides general health information, wellness awareness, and educational guidance through smart voice and text conversations anytime.",
+        hero_cta_call: "📞 Call Chotelal Ji",
+        hero_cta_chat: "💬 Start Conversation",
+        trust_safe: "Private & Local",
+        trust_avail: "24/7 Available",
+        trust_hindi: "Hindi & English",
+        badge_chat: "Interactive AI Doctor",
+        title_talk: "Talk to Chotelal Ji",
+        desc_talk: "Ask any general health question in Hindi or English using voice or text.",
+        chat_subtitle: "AI Health Assistant • Online",
+        chat_btn_call: "Call",
+        toast_listening: "I am listening... Please speak",
+        badge_topics: "Knowledge Base",
+        title_topics: "Explore Health Topics",
+        desc_topics: "Click any wellness category to ask Chotelal Ji or find educational videos instantly.",
+        topic_heart: "Heart Health",
+        topic_heart_desc: "Cardiovascular care, blood circulation, and heart-friendly lifestyle habits.",
+        topic_diabetes: "Diabetes Care",
+        topic_diabetes_desc: "Blood sugar regulation, HbA1c guidance, and low glycemic diet tips.",
+        topic_fever: "Fever & Viral",
+        topic_fever_desc: "Understanding body temperature spikes, hydration, and warning flags.",
+        topic_mental: "Mental Wellness",
+        topic_mental_desc: "Stress management, anxiety alleviation, mindfulness, and mental peace.",
+        topic_nutrition: "Nutrition & Diet",
+        topic_nutrition_desc: "Balanced macro-nutrients, essential vitamins, and gut health care.",
+        topic_fitness: "Fitness & Exercise",
+        topic_fitness_desc: "Simple daily workouts, mobility exercises, and metabolic stamina.",
+        topic_sleep: "Sleep Hygiene",
+        topic_sleep_desc: "Circadian rhythm optimization, melatonin support, and rest rituals.",
+        topic_resp: "Respiratory Health",
+        topic_resp_desc: "Lung capacity, breathing exercises, and combating air pollution effects.",
+        topic_btn: "Explore Topic",
+        badge_videos: "Video Library",
+        title_videos: "Educational Health Videos",
+        desc_videos: "Search validated medical education topics and watch verified clinical explanations.",
+        btn_yt_search: "Search YouTube",
+        badge_about: "Our Mission",
+        title_about: "What is Chotelal Clinics?",
+        desc_about: "The core goal of Chotelal Clinics: 'Making health information easier to understand and access through AI.'",
+        desc_about_p2: "Chotelal Ji serves as an intuitive digital companion that translates medical jargon into clear explanations before seeing your physician.",
+        feat_1_t: "Instant Symptom Clarity",
+        feat_1_d: "Discuss symptoms and receive structured general wellness advice within seconds.",
+        feat_2_t: "Hindi-First Voice Experience",
+        feat_2_d: "Speak naturally in Hindi with browser speech recognition for hands-free queries.",
+        feat_3_t: "Privacy Minded & Zero Key Leaks",
+        feat_3_d: "Operates cleanly on static hosting without demanding sensitive patient data.",
+        disc_title: "Official Medical & Emergency Safety Notice",
+        disc_text: "Chotelal Ji is an artificial intelligence health assistant designed for informational purposes only. It is NOT a replacement for a qualified doctor, clinical diagnosis, or emergency medical service. In severe symptoms, seek immediate emergency help.",
+        footer_tagline: "Your AI Health Companion — accessible health guidance for everyone through cutting-edge artificial intelligence.",
+        footer_quick_links: "Quick Navigation",
+        footer_legal: "Safety & Policy",
+        footer_disc: "Medical Disclaimer",
+        footer_priv: "Privacy & Storage Notice",
+        footer_terms: "Terms of AI Usage",
+        footer_sub: "Created for general informational health awareness."
+      }
+    };
+
+    /* Apply Translations */
+    function applyLanguage(lang) {
+      AppState.lang = lang;
+      localStorage.setItem('cc_lang', lang);
+      document.documentElement.lang = lang;
+      document.getElementById('langLabel').textContent = lang === 'hi' ? 'EN' : 'हिंदी';
+
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key]) {
+          el.textContent = I18N[lang][key];
+        }
+      });
+    }
+
+    document.getElementById('langToggleBtn').addEventListener('click', () => {
+      const nextLang = AppState.lang === 'hi' ? 'en' : 'hi';
+      applyLanguage(nextLang);
+    });
+
+    /* ==========================================================================
+       3. THEME TOGGLE (Dark / Light)
+       ========================================================================== */
+    function applyTheme(theme) {
+      AppState.theme = theme;
+      localStorage.setItem('cc_theme', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+
+      const sunIcon = document.getElementById('themeIconSun');
+      const moonIcon = document.getElementById('themeIconMoon');
+      if (theme === 'light') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
+
+    document.getElementById('themeToggleBtn').addEventListener('click', () => {
+      const nextTheme = AppState.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+    });
+
+    /* ==========================================================================
+       4. SECURE AI INTEGRATION ARCHITECTURE (Clean Backend Ready)
+       ========================================================================== */
+    /**
+     * Sends user query to AI.
+     * Ready for secure backend integration (e.g. Gemini / OpenAI / Cloudflare Workers / Node server).
+     * DO NOT PUT SECRETS OR GEMINI KEYS DIRECTLY IN STATIC FRONTEND FILES.
+     */
+    async function sendToAI(userMessage) {
+      const BACKEND_ENDPOINT = null; // Set to your secure proxy endpoint e.g., "https://your-api.com/api/chat"
+
+      if (BACKEND_ENDPOINT) {
+        try {
+          const response = await fetch(BACKEND_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage, language: AppState.lang })
+          });
+          if (!response.ok) throw new Error("Backend response error");
+          const data = await response.json();
+          return data.reply;
+        } catch (err) {
+          console.warn("AI Backend unreachable, falling back to local clinical knowledge engine.", err);
+        }
+      }
+
+      // High-Quality Local Clinical Response Engine (Hindi & English)
+      return generateLocalAIResponse(userMessage);
+    }
+
+    function generateLocalAIResponse(query) {
+      const q = query.toLowerCase();
+      const isHi = AppState.lang === 'hi';
+
+      // 1. Emergency Detection
+      if (q.includes('chest pain') || q.includes('heart attack') || q.includes('सांस नहीं') || q.includes('सीने में दर्द') || q.includes('bleeding') || q.includes('unconscious') || q.includes('बेहोश')) {
+        return isHi
+          ? "⚠️ आपातकालीन सूचना: आपके लक्षण गंभीर हो सकते हैं। कृपया बिना देरी किए नजदीकी अस्पताल के इमरजेंसी वार्ड में जाएं या तुरंत एम्बुलेंस (108 / 112) को कॉल करें।"
+          : "⚠️ EMERGENCY WARNING: These symptoms may indicate an acute medical emergency. Please seek immediate professional emergency medical care or call 112 / 911 right now.";
+      }
+
+      // 2. Fever & Viral
+      if (q.includes('fever') || q.includes('बुखार') || q.includes('temperature') || q.includes('pyrexia')) {
+        return isHi
+          ? "नमस्ते! बुखार शरीर में संक्रमण से लड़ने की स्वाभाविक प्रक्रिया है। पर्याप्त मात्रा में गुनगुना पानी पिएं, माथे पर गीली पट्टी रखें और पर्याप्त आराम करें। यदि तापमान 102°F (38.9°C) से अधिक हो या 3 दिन से अधिक रहे, तो योग्य डॉक्टर से परामर्श लें।"
+          : "Namaste! A fever is usually your body's immune response to an infection. Stay well-hydrated, rest in a cool room, and monitor your temperature. If the fever exceeds 102°F or persists for more than 3 days, please consult a qualified doctor.";
+      }
+
+      // 3. Headache & Migraine
+      if (q.includes('headache') || q.includes('सिरदर्द') || q.includes('सिर दर्द') || q.includes('migraine')) {
+        return isHi
+          ? "सिरदर्द के मुख्य कारण निर्जलीकरण (पानी की कमी), तनाव, आंखों पर दबाव या नींद की कमी हो सकते हैं। शांत, अंधेरे कमरे में आराम करें और 1-2 गिलास पानी पिएं। यदि दर्द अचानक असहनीय हो या उल्टी आए, तो तुरंत डॉक्टर से संपर्क करें।"
+          : "Headaches are often linked to dehydration, stress, lack of sleep, or screen eye-strain. Rest in a quiet dark room and drink plenty of water. If you experience a sudden severe thunderclap headache or numbness, seek emergency care.";
+      }
+
+      // 4. Diabetes & Sugar
+      if (q.includes('diabetes') || q.includes('sugar') || q.includes('मधुमेह') || q.includes('शुगर') || q.includes('glucose')) {
+        return isHi
+          ? "डायबिटीज प्रबंधन में आहार की मुख्य भूमिका है। मीठे पेय, मैदा और प्रोसेस्ड फूड से बचें। हरी सब्जियां, जामुन, करेला और मेथी दाना आहार में शामिल करें। अपने डॉक्टर की सलाह से हर 3 महीने में HbA1c टेस्ट अवश्य करवाएं।"
+          : "Diabetes management relies heavily on diet and physical activity. Avoid refined carbs and sugary beverages. Incorporate fiber-rich vegetables, whole grains, and lean proteins. Regularly track fasting blood sugar and HbA1c.";
+      }
+
+      // 5. Blood Pressure & Heart
+      if (q.includes('blood pressure') || q.includes('bp') || q.includes('रक्तचाप') || q.includes('hypertension')) {
+        return isHi
+          ? "ब्लड प्रेशर सामान्य रखने के लिए भोजन में नमक की मात्रा कम करें (प्रतिदिन 5g से कम), रोजाना 30 मिनट टहलें और तनाव कम करें। यदि BP 140/90 से लगातार अधिक रहता है, तो अपने डॉक्टर से दवा के संबंध में चर्चा करें।"
+          : "For healthy blood pressure, reduce dietary sodium (under 5g/day), engage in 30 minutes of daily aerobic movement, and practice relaxation. If blood pressure remains consistently above 140/90 mmHg, consult your physician.";
+      }
+
+      // 6. Cold & Cough
+      if (q.includes('cold') || q.includes('cough') || q.includes('सर्दी') || q.includes('जुकाम') || q.includes('खांसी') || q.includes('gala')) {
+        return isHi
+          ? "सर्दी-खांसी में भाप लेना (steam inhalation) और नमक के गुनगुने पानी से गरारे करना बहुत लाभकारी होता है। अदरक-तुलसी की चाय पिएं। यह सामान्यतः 5-7 दिनों में ठीक हो जाता है। यदि सांस लेने में घरघराहट हो, तो डॉक्टर को दिखाएं।"
+          : "For colds and coughs, warm saline gargles, steam inhalation, and hot herbal teas offer great relief. These viral symptoms typically subside in 5 to 7 days. Consult a physician if you develop chest congestion or breathing difficulty.";
+      }
+
+      // 7. Stomach Pain & Digestion
+      if (q.includes('stomach') || q.includes('pet dard') || q.includes('पेट दर्द') || q.includes('gas') || q.includes('acidity') || q.includes('digestion')) {
+        return isHi
+          ? "पेट दर्द या एसिडिटी के लिए हल्का खाना (खिचड़ी, दही), नारियल पानी और छाछ लें। तली-भुनी चीजों से परहेज करें। यदि पेट में तेज चुभन या उल्टी हो, तो तुरंत चिकित्सक से परामर्श लें।"
+          : "For mild stomach ache or acidity, stick to bland easily digestible meals, drink coconut water, and avoid spicy foods. If pain is sharp, located on the lower right abdomen, or accompanied by vomiting, seek medical evaluation.";
+      }
+
+      // 8. Sleep & Stress
+      if (q.includes('sleep') || q.includes('नींद') || q.includes('stress') || q.includes('तनाव') || q.includes('anxiety')) {
+        return isHi
+          ? "अच्छी नींद और तनाव मुक्ति के लिए सोने से 1 घंटा पहले मोबाइल स्क्रीन बंद कर दें। कमरे को ठंडा रखें और 5 मिनट प्राणायाम या '4-7-8' ब्रीदिंग तकनीक का अभ्यास करें।"
+          : "For restful sleep, avoid blue light screens 60 minutes before bed, keep the bedroom cool, and practice deep diaphragmatic breathing. Regular sleep timing helps optimize your natural circadian rhythm.";
+      }
+
+      // Fallback Response
+      return isHi
+        ? "नमस्ते! मैंने आपका प्रश्न नोट कर लिया है। एक AI सहायक के रूप में मैं सामान्य स्वास्थ्य जागरूकता प्रदान करता हूँ। अपने स्वास्थ्य के सटीक परीक्षण और दवा के लिए कृपया किसी योग्य चिकित्सक (Doctor) से परामर्श लें।"
+        : "Namaste! I have noted your health query. As an AI health assistant, I provide general educational information. For an accurate medical diagnosis and personalized treatment plan, please consult a qualified healthcare professional.";
+    }
+
+    /* ==========================================================================
+       5. CHAT SYSTEM (Text & Voice Interactions)
+       ========================================================================== */
+    async function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'user');
+      input.value = '';
+
+      const typing = document.getElementById('typingIndicator');
+      typing.classList.add('active');
+
+      const aiResponse = await sendToAI(text);
+
+      setTimeout(() => {
+        typing.classList.remove('active');
+        appendMessage(aiResponse, 'ai');
+        if (AppState.callActive) {
+          document.getElementById('callTranscript').textContent = `"${aiResponse}"`;
+          if (AppState.callSpeaker) speakText(aiResponse);
+        }
+      }, 700);
+    }
+
+    function appendMessage(text, sender) {
+      const container = document.getElementById('chatMessages');
+      const row = document.createElement('div');
+      row.className = `message-row ${sender}`;
+
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.textContent = sender === 'ai' ? '👨‍⚕️' : '👤';
+
+      const contentWrapper = document.createElement('div');
+      const bubble = document.createElement('div');
+      bubble.className = 'message-bubble';
+      bubble.textContent = text;
+
+      if (sender === 'ai') {
+        const speakBtn = document.createElement('button');
+        speakBtn.className = 'message-speak-btn';
+        speakBtn.textContent = '🔊 Speak';
+        speakBtn.setAttribute('aria-label', 'Listen to speech');
+        speakBtn.onclick = () => speakText(text);
+        bubble.appendChild(document.createElement('br'));
+        bubble.appendChild(speakBtn);
+      }
+
+      const timeSpan = document.createElement('span');
+      timeSpan.className = 'message-time';
+      timeSpan.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      contentWrapper.appendChild(bubble);
+      contentWrapper.appendChild(timeSpan);
+      row.appendChild(avatar);
+      row.appendChild(contentWrapper);
+      container.appendChild(row);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function clearChatHistory() {
+      const container = document.getElementById('chatMessages');
+      container.innerHTML = `
+        <div class="message-row ai">
+          <div class="message-avatar">👨‍⚕️</div>
+          <div>
+            <div class="message-bubble">
+              ${AppState.lang === 'hi'
+                ? "बातचीत रीसेट हो गई है। आप अपना नया प्रश्न पूछ सकते हैं।"
+                : "Conversation cleared. You may ask a fresh health query anytime."}
+            </div>
+            <span class="message-time">Just now</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectTopic(topicTitle, sampleQuery) {
+      document.getElementById('chatInput').value = sampleQuery;
+      document.getElementById('chatForm').dispatchEvent(new Event('submit'));
+      document.getElementById('ai-doctor').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ==========================================================================
+       6. WEB SPEECH API: HINDI SPEECH-TO-TEXT (STT)
+       ========================================================================== */
+    function initSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return null;
+
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = AppState.lang === 'hi' ? 'hi-IN' : 'en-IN';
+
+      recognition.onstart = () => {
+        AppState.isListening = true;
+        document.getElementById('micBtn').classList.add('listening');
+        document.getElementById('listeningToast').classList.add('active');
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('chatInput').value = transcript;
+        document.getElementById('chatForm').dispatchEvent(new Event('submit'));
+      };
+
+      recognition.onerror = (event) => {
+        console.warn("Speech recognition error:", event.error);
+        stopVoiceInput();
+      };
+
+      recognition.onend = () => {
+        stopVoiceInput();
+      };
+
+      return recognition;
+    }
+
+    function toggleVoiceInput() {
+      if (AppState.isListening) {
+        if (AppState.recognitionInstance) AppState.recognitionInstance.stop();
+        stopVoiceInput();
+      } else {
+        AppState.recognitionInstance = initSpeechRecognition();
+        if (AppState.recognitionInstance) {
+          try {
+            AppState.recognitionInstance.start();
+          } catch (e) {
+            console.error(e);
+          }
+        } else {
+          alert("Your browser does not support Speech Recognition. Please use Chrome or type your question.");
+        }
+      }
+    }
+
+    function stopVoiceInput() {
+      AppState.isListening = false;
+      document.getElementById('micBtn').classList.remove('listening');
+      document.getElementById('listeningToast').classList.remove('active');
+    }
+
+    /* ==========================================================================
+       7. SPEECH SYNTHESIS: NATURAL VOICE OUTPUT (TTS)
+       ========================================================================== */
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        console.warn("Speech synthesis not supported on this browser.");
+        return;
+      }
+
+      window.speechSynthesis.cancel(); // Stop any ongoing speech
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.95; // Natural human cadence
+      utterance.pitch = 1.0;
+
+      // Select Best Available Hindi Voice
+      const voices = window.speechSynthesis.getVoices();
+      let selectedVoice = null;
+
+      if (AppState.lang === 'hi') {
+        selectedVoice = voices.find(v => v.lang.includes('hi') || v.name.toLowerCase().includes('hindi')) ||
+                        voices.find(v => v.lang.includes('hi-IN')) ||
+                        voices.find(v => v.lang.includes('en-IN')) || null;
+      } else {
+        selectedVoice = voices.find(v => v.lang.includes('en-IN')) ||
+                        voices.find(v => v.lang.includes('en-US')) || null;
+      }
+
+      if (selectedVoice) utterance.voice = selectedVoice;
+
+      utterance.onstart = () => {
+        AppState.isSpeaking = true;
+        document.getElementById('callAvatarContainer').classList.add('speaking');
+        document.getElementById('callModal').classList.add('speaking');
+      };
+
+      utterance.onend = () => {
+        AppState.isSpeaking = false;
+        document.getElementById('callAvatarContainer').classList.remove('speaking');
+        document.getElementById('callModal').classList.remove('speaking');
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Preload voices
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    /* ==========================================================================
+       8. FULL-SCREEN "CALL CHOTELAL JI" CONTROLLER
+       ========================================================================== */
+    function openCallModal() {
+      AppState.callActive = true;
+      const modal = document.getElementById('callModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      const initialGreeting = AppState.lang === 'hi'
+        ? "नमस्ते! मैं छोटालाल जी बोल रहा हूँ। आप अपने लक्षण बताइए, मैं सुन रहा हूँ..."
+        : "Namaste! This is Chotelal Ji. I am listening to your health concerns...";
+
+      document.getElementById('callTranscript').textContent = `"${initialGreeting}"`;
+      document.getElementById('callStatusText').textContent = "Connected • AI Voice Active";
+
+      if (AppState.callSpeaker) {
+        speakText(initialGreeting);
+      }
+
+      startCallVoiceListener();
+    }
+
+    function endCall() {
+      AppState.callActive = false;
+      const modal = document.getElementById('callModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      if (AppState.callRecognitionInstance) AppState.callRecognitionInstance.stop();
+    }
+
+    function toggleCallMute() {
+      AppState.callMuted = !AppState.callMuted;
+      const btn = document.getElementById('callMuteBtn');
+      if (AppState.callMuted) {
+        btn.classList.add('active-mute');
+        if (AppState.callRecognitionInstance) AppState.callRecognitionInstance.stop();
+        document.getElementById('callStatusText').textContent = "Muted";
+      } else {
+        btn.classList.remove('active-mute');
+        startCallVoiceListener();
+        document.getElementById('callStatusText').textContent = "Connected • Listening";
+      }
+    }
+
+    function toggleCallSpeaker() {
+      AppState.callSpeaker = !AppState.callSpeaker;
+      const btn = document.getElementById('callSpeakerBtn');
+      if (!AppState.callSpeaker) {
+        btn.classList.add('active-mute');
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      } else {
+        btn.classList.remove('active-mute');
+      }
+    }
+
+    function startCallVoiceListener() {
+      if (AppState.callMuted || !AppState.callActive) return;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return;
+
+      AppState.callRecognitionInstance = new SpeechRecognition();
+      AppState.callRecognitionInstance.continuous = false;
+      AppState.callRecognitionInstance.interimResults = false;
+      AppState.callRecognitionInstance.lang = AppState.lang === 'hi' ? 'hi-IN' : 'en-IN';
+
+      AppState.callRecognitionInstance.onresult = async (event) => {
+        const spokenText = event.results[0][0].transcript;
+        document.getElementById('callTranscript').textContent = `"${spokenText}"`;
+        document.getElementById('callStatusText').textContent = "Thinking...";
+
+        const aiReply = await sendToAI(spokenText);
+        document.getElementById('callTranscript').textContent = `"${aiReply}"`;
+        document.getElementById('callStatusText').textContent = "Speaking...";
+
+        if (AppState.callSpeaker) speakText(aiReply);
+
+        // Resume listening once speech ends
+        setTimeout(() => {
+          if (AppState.callActive && !AppState.callMuted) {
+            document.getElementById('callStatusText').textContent = "Connected • Listening";
+            startCallVoiceListener();
+          }
+        }, 3500);
+      };
+
+      AppState.callRecognitionInstance.onerror = () => {
+        if (AppState.callActive && !AppState.callMuted) {
+          setTimeout(startCallVoiceListener, 2000);
+        }
+      };
+
+      try {
+        AppState.callRecognitionInstance.start();
+      } catch (e) {}
+    }
+
+    /* ==========================================================================
+       9. YOUTUBE HEALTH VIDEO SEARCH CONTROLLER
+       ========================================================================== */
+    function handleVideoSearch(e) {
+      e.preventDefault();
+      const query = document.getElementById('videoQueryInput').value.trim();
+      if (!query) return;
+      openYouTubeTopic(query + ' health awareness education');
+    }
+
+    function openYouTubeTopic(topicName) {
+      const sanitized = encodeURIComponent(topicName);
+      const url = `https://www.youtube.com/results?search_query=${sanitized}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    /* ==========================================================================
+       10. MOBILE MENU TOGGLE
+       ========================================================================== */
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMobileMenu() {
+      const isOpen = mobileMenu.classList.toggle('active');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    }
+
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ==========================================================================
+       11. INITIALIZATION ON DOM READY
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTheme(AppState.theme);
+      applyLanguage(AppState.lang);
+      document.getElementById('initTime').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    });
+  </script>
+</body>
+</html>
