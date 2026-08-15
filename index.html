@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Chotelal Clinics - AI Doctor Chotelal Ji with Gemini Intelligence and Natural Male Voice." />
-  <title>Chotelal Clinics | Dr. Chotelal Ji AI</title>
+  <meta name="description" content="Chotelal Clinics - AI Doctor Dr. Chotelal Ji with Smart Symptom Analysis, Natural Hindi Voice & Verified Nearby Doctors Directory." />
+  <title>Chotelal Clinics | Dr. Chotelal Ji AI & Nearby Doctors</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ==========================================================================
-       1. CLINICAL LIGHT THEME VARIABLES (Smooth, Clean & Professional)
+       1. CLINICAL LIGHT THEME SYSTEM
        ========================================================================== */
     :root {
       --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -22,13 +22,19 @@
       --bg-base: #f8fafc;
       --bg-surface: #ffffff;
       --bg-subtle: #f1f5f9;
-      --bg-brand-light: #ecfeff;
-      
+      --bg-mint: #f0fdfa;
+      --bg-sky: #f0f9ff;
+
       --primary: #0284c7;
       --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
       --teal: #0d9488;
+      --teal-dark: #0f766e;
       --teal-light: #ccfbf1;
-      
+
+      --whatsapp-green: #25d366;
+      --whatsapp-dark: #128c7e;
+
       --text-main: #0f172a;
       --text-muted: #475569;
       --text-light: #94a3b8;
@@ -46,8 +52,10 @@
       --shadow-lg: 0 20px 35px -10px rgba(2, 132, 199, 0.08), 0 1px 3px rgba(0,0,0,0.05);
 
       --danger: #ef4444;
+      --danger-light: #fee2e2;
       --success: #10b981;
       --warning: #f59e0b;
+      --warning-light: #fef3c7;
     }
 
     *, *::before, *::after {
@@ -81,30 +89,30 @@
 
     p { color: var(--text-muted); }
     a { color: inherit; text-decoration: none; }
-    button, input { font-family: inherit; border: none; outline: none; }
+    button, input, select, textarea { font-family: inherit; border: none; outline: none; }
     button { cursor: pointer; user-select: none; transition: all 0.2s ease; }
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    .section { padding: 4.5rem 0; }
-    .section-header { text-align: center; max-width: 680px; margin: 0 auto 3rem; }
+    .section { padding: 5rem 0; }
+    .section-header { text-align: center; max-width: 720px; margin: 0 auto 3.5rem; }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 0.9rem;
+      padding: 0.35rem 0.95rem;
       border-radius: var(--radius-full);
       font-size: 0.8rem;
       font-weight: 600;
-      background: var(--bg-brand-light);
+      background: var(--bg-mint);
       color: var(--teal);
-      border: 1px solid #a5f3fc;
+      border: 1px solid #99f6e4;
       margin-bottom: 1rem;
     }
 
@@ -117,8 +125,14 @@
     }
 
     .section-title {
-      font-size: clamp(2rem, 3.5vw, 2.6rem);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
       margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
     }
 
     .btn {
@@ -126,7 +140,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.8rem 1.6rem;
+      padding: 0.85rem 1.65rem;
       border-radius: var(--radius-md);
       font-weight: 600;
       font-size: 0.95rem;
@@ -142,6 +156,17 @@
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
     }
 
     .btn-secondary {
@@ -177,7 +202,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -193,21 +218,22 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 800;
       font-family: var(--font-heading);
     }
 
     .brand-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--teal) 100%);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
     }
 
     .nav-links {
@@ -231,19 +257,19 @@
        3. HERO SECTION
        ========================================================================== */
     .hero {
-      padding: 4.5rem 0 3.5rem;
-      background: radial-gradient(circle at 80% 20%, rgba(204, 251, 241, 0.6) 0%, rgba(248, 250, 252, 0) 60%);
+      padding: 5rem 0 4rem;
+      background: radial-gradient(circle at 85% 15%, rgba(204, 251, 241, 0.5) 0%, rgba(248, 250, 252, 0) 60%);
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 3rem;
+      gap: 3.5rem;
       align-items: center;
     }
 
     .hero-headline {
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-size: clamp(2.5rem, 4.8vw, 3.8rem);
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
@@ -262,45 +288,65 @@
     }
 
     .hero-desc {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       margin-bottom: 2rem;
-      max-width: 540px;
+      max-width: 560px;
     }
 
     .hero-doctor-card {
-      padding: 2rem;
+      padding: 2.25rem 2rem;
       text-align: center;
       position: relative;
       background: #ffffff;
-      border: 1px solid var(--border);
     }
 
     .doc-avatar-large {
-      width: 130px;
-      height: 130px;
+      width: 135px;
+      height: 135px;
       border-radius: 50%;
-      background: var(--bg-brand-light);
+      background: var(--bg-mint);
       border: 4px solid var(--teal-light);
       margin: 0 auto 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
+      font-size: 4.25rem;
       box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .doc-avatar-large .status-dot {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--success);
+      border: 3px solid #ffffff;
     }
 
     /* ==========================================================================
        4. CHAT & AI DOCTOR SECTION
        ========================================================================== */
     .chat-card {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: 680px;
-      border: 1px solid var(--border);
+      height: 720px;
       background: #ffffff;
+    }
+
+    .api-config-bar {
+      padding: 0.6rem 1.5rem;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
     }
 
     .chat-header {
@@ -322,11 +368,12 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: var(--bg-brand-light);
+      background: var(--bg-mint);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.4rem;
+      flex-shrink: 0;
     }
 
     .chat-messages {
@@ -342,17 +389,17 @@
     .message-row {
       display: flex;
       gap: 0.75rem;
-      max-width: 82%;
+      max-width: 86%;
     }
 
     .message-row.ai { align-self: flex-start; }
     .message-row.user { align-self: flex-end; flex-direction: row-reverse; }
 
     .message-bubble {
-      padding: 0.95rem 1.25rem;
+      padding: 1rem 1.3rem;
       border-radius: 18px;
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 0.96rem;
+      line-height: 1.65;
     }
 
     .message-row.ai .message-bubble {
@@ -369,21 +416,18 @@
     }
 
     .disease-box {
-      margin-top: 0.85rem;
+      margin-top: 0.9rem;
       background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 1rem;
+      padding: 1.1rem;
     }
 
     .disease-title {
       font-weight: 700;
       color: var(--primary-dark);
-      font-size: 1rem;
+      font-size: 1.05rem;
       margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
 
     .disease-images-grid {
@@ -398,6 +442,7 @@
       overflow: hidden;
       aspect-ratio: 16/10;
       border: 1px solid var(--border);
+      background: #e2e8f0;
     }
 
     .disease-img-box img {
@@ -413,7 +458,7 @@
       background: #fee2e2;
       color: #dc2626;
       border: 1px solid #fca5a5;
-      padding: 0.45rem 0.8rem;
+      padding: 0.45rem 0.85rem;
       border-radius: var(--radius-sm);
       font-size: 0.8rem;
       font-weight: 600;
@@ -424,14 +469,14 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      background: var(--bg-brand-light);
+      background: var(--bg-mint);
       color: var(--teal);
-      border: 1px solid #a5f3fc;
-      padding: 0.3rem 0.75rem;
+      border: 1px solid #99f6e4;
+      padding: 0.3rem 0.8rem;
       border-radius: var(--radius-full);
       font-size: 0.75rem;
       font-weight: 600;
-      margin-top: 0.6rem;
+      margin-top: 0.7rem;
     }
 
     .chat-input-area {
@@ -448,7 +493,7 @@
       background: var(--bg-subtle);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 0.8rem 1.2rem;
+      padding: 0.85rem 1.25rem;
       font-size: 0.95rem;
     }
 
@@ -458,42 +503,348 @@
     }
 
     .mic-btn {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--bg-subtle);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.15rem;
       color: var(--text-main);
     }
 
     .mic-btn.active {
-      background: #fee2e2;
+      background: var(--danger-light);
       border-color: var(--danger);
       color: var(--danger);
       animation: pulse-mic 1.5s infinite;
     }
 
-    .api-config-bar {
-      padding: 0.5rem 1.5rem;
-      background: #f8fafc;
-      border-bottom: 1px solid var(--border);
+    /* ==========================================================================
+       5. NEARBY DOCTORS & DIRECTORY SECTION
+       ========================================================================== */
+    .doctors-header-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem;
+    }
+
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .doctor-card {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .doctor-card-top {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .doctor-avatar-box {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--bg-mint);
+      border: 2px solid var(--teal-light);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 0.8rem;
+      justify-content: center;
+      font-size: 2rem;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .doctor-avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .doctor-details h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .doctor-speciality {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .doctor-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doctor-card-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .doctor-badge-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-sky);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Modal Form for Adding Doctor */
+    .admin-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .admin-modal.active { display: flex; }
+
+    .admin-modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 540px;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .form-input {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .form-input:focus {
+      background: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Tracking Logs Table Card */
+    .tracking-log-card {
+      margin-top: 3rem;
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .log-table th, .log-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .log-table th {
+      background: var(--bg-subtle);
+      font-weight: 700;
+      color: var(--text-main);
     }
 
     /* ==========================================================================
-       5. CALL MODAL (CLEAN WHITE AESTHETIC)
+       6. HEALTH TOPICS & VIDEOS SECTION
+       ========================================================================== */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .topic-card {
+      padding: 1.75rem 1.5rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: #ffffff;
+    }
+
+    .topic-icon { font-size: 2.25rem; }
+    .topic-title { font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+    .topic-desc { font-size: 0.88rem; color: var(--text-muted); }
+
+    .video-search-container {
+      max-width: 650px;
+      margin: 0 auto 3rem;
+    }
+
+    .video-search-bar {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.4rem 0.5rem 0.4rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .video-input {
+      flex: 1;
+      background: transparent;
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+
+    .video-search-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      background: #ffffff;
+    }
+
+    .video-thumbnail-box {
+      width: 100%;
+      height: 180px;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .video-play-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.9);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    /* ==========================================================================
+       7. ABOUT & SAFETY DISCLAIMER
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .feature-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-mint);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .disclaimer-banner {
+      background: var(--warning-light);
+      border: 1px solid #fde68a;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin: 3.5rem 0;
+    }
+
+    .disclaimer-icon { font-size: 2.25rem; flex-shrink: 0; }
+    .disclaimer-title { font-size: 1.15rem; font-weight: 700; color: #92400e; margin-bottom: 0.5rem; }
+    .disclaimer-text { font-size: 0.92rem; color: #78350f; line-height: 1.6; }
+
+    /* ==========================================================================
+       8. CALL MODAL
        ========================================================================== */
     .call-modal {
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(15, 23, 42, 0.4);
+      background: rgba(15, 23, 42, 0.45);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
@@ -511,14 +862,13 @@
       padding: 2.5rem 1.75rem;
       text-align: center;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      position: relative;
     }
 
     .call-avatar {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: var(--bg-brand-light);
+      background: var(--bg-mint);
       border: 4px solid var(--teal-light);
       display: flex;
       align-items: center;
@@ -591,30 +941,43 @@
     }
 
     /* ==========================================================================
-       6. KEYFRAME ANIMATIONS
+       9. FOOTER
        ========================================================================== */
-    @keyframes pulse-dot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.6; }
+    .footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 4rem 0 2rem;
+      margin-top: auto;
     }
-    @keyframes pulse-mic {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-      50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
     }
-    @keyframes pulse-ring {
-      0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
-      70% { box-shadow: 0 0 0 20px rgba(13, 148, 136, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
-    }
-    @keyframes wave {
-      0%, 100% { height: 6px; }
-      50% { height: 32px; }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-links a { font-size: 0.9rem; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* ==========================================================================
+       10. ANIMATIONS
+       ========================================================================== */
+    @keyframes pulse-dot { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+    @keyframes pulse-mic { 0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(13, 148, 136, 0); } 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); } }
+    @keyframes wave { 0%, 100% { height: 6px; } 50% { height: 32px; } }
+
+    @media (max-width: 1024px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; }
       .nav-links { display: none; }
-      .chat-card { height: 600px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .chat-card { height: 620px; }
     }
   </style>
 </head>
@@ -631,7 +994,9 @@
       <ul class="nav-links">
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#ai-doctor" class="nav-link">AI Doctor</a></li>
+        <li><a href="#nearby-doctors" class="nav-link">Nearby Doctors</a></li>
         <li><a href="#topics" class="nav-link">Health Guide</a></li>
+        <li><a href="#videos" class="nav-link">Videos</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
       </ul>
 
@@ -651,30 +1016,35 @@
           <div>
             <div class="badge">
               <span class="badge-dot"></span>
-              <span>Gemini AI Healthcare Assistant • Online</span>
+              <span>स्मार्ट AI हेल्थकेयर असिस्टेंट • 24/7 लाइव</span>
             </div>
-            <h1 class="hero-headline">Meet <span>Dr. Chotelal Ji</span></h1>
-            <div class="hero-subheadline">Your Intelligent Health Companion in Hinglish</div>
+            <h1 class="hero-headline">नमस्ते! मैं हूँ <span>डॉ. छोटालाल जी</span></h1>
+            <div class="hero-subheadline">आपका व्यक्तिगत AI स्वास्थ्य साथी (प्राकृतिक हिंदी आवाज)</div>
             <p class="hero-desc">
-              Understand your symptoms with clinical clarity. Chotelal Ji provides empathetic doctor guidance, disease identification, and verified medical video resources.
+              अपने लक्षणों को विस्तार से बताएं। छोटालाल जी बीमारी का सही विश्लेषण करेंगे, घरेलू देखभाल समझाएंगे और जरूरत पड़ने पर सीधे आपके नजदीकी वेरिफाइड डॉक्टर के WhatsApp पर कनेक्ट करवाएंगे।
             </p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
               <button class="btn btn-primary" onclick="openCallModal()">
-                🎙️ Start Male Voice Call
+                🎙️ हिंदी में वॉइस कॉल करें
               </button>
+              <a href="#nearby-doctors" class="btn btn-whatsapp">
+                👨‍⚕️ नजदीकी डॉक्टर खोजें
+              </a>
               <a href="#ai-doctor" class="btn btn-secondary">
-                💬 Chat with Chotelal Ji
+                💬 चैट शुरू करें
               </a>
             </div>
           </div>
 
-          <!-- Doctor Card -->
           <div class="card hero-doctor-card">
-            <div class="doc-avatar-large">👨‍⚕️</div>
-            <h3>Dr. Chotelal Ji</h3>
-            <p style="font-size: 0.9rem; color: var(--teal); font-weight: 600;">Virtual AI Physician</p>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
-              "Namaste! Main aapke symptoms samajhkar simple Hinglish mein sahi advice dunga."
+            <div class="doc-avatar-large">
+              👨‍⚕️
+              <span class="status-dot"></span>
+            </div>
+            <h3>डॉ. छोटालाल जी</h3>
+            <p style="font-size: 0.9rem; color: var(--teal); font-weight: 600;">वर्चुअल AI फिजिशियन</p>
+            <p style="font-size: 0.88rem; margin-top: 0.5rem; color: var(--text-muted);">
+              "नमस्ते! मुझे अपने लक्षण बताएं, मैं हर बार आपको सटीक व अलग-अलग स्वास्थ्य सलाह दूंगा।"
             </p>
           </div>
         </div>
@@ -685,18 +1055,17 @@
     <section id="ai-doctor" class="section">
       <div class="container">
         <div class="section-header">
-          <div class="badge">Conversational AI Engine</div>
-          <h2 class="section-title">Talk to Chotelal Ji</h2>
-          <p>Apne symptoms describe karein (fever, headache, cold, digestion, diabetes).</p>
+          <div class="badge">स्मार्ट क्लिनिकल रीजनिंग इंजन</div>
+          <h2 class="section-title">छोटालाल जी से परामर्श लें</h2>
+          <p class="section-desc">अपने लक्षण विस्तार से बताएं (जैसे: बुखार, सिरदर्द, पेट में जलन, शुगर, बीपी)।</p>
         </div>
 
         <div class="card chat-card">
-          <!-- Optional Gemini API Key Bar for Full AI Power -->
           <div class="api-config-bar">
-            <span>⚡ <strong>Gemini AI Integration:</strong></span>
+            <span>⚡ <strong>Google Gemini AI कनेक्ट करें (Optional):</strong></span>
             <div style="display: flex; gap: 0.5rem; align-items: center;">
-              <input type="password" id="geminiApiKey" placeholder="Paste Gemini API Key (optional)" style="background: #fff; border: 1px solid var(--border); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem; width: 190px;" />
-              <button onclick="saveApiKey()" style="padding: 0.25rem 0.6rem; background: var(--teal); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Save</button>
+              <input type="password" id="geminiApiKey" placeholder="Gemini API Key पेस्ट करें" style="background: #fff; border: 1px solid var(--border); padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.78rem; width: 210px;" />
+              <button onclick="saveApiKey()" style="padding: 0.3rem 0.7rem; background: var(--teal); color: #fff; border-radius: 6px; font-size: 0.78rem; font-weight: 600;">Save Key</button>
             </div>
           </div>
 
@@ -704,12 +1073,12 @@
             <div class="chat-doc-info">
               <div class="chat-avatar">👨‍⚕️</div>
               <div>
-                <div style="font-weight: 700; font-size: 1rem;">Chotelal Ji</div>
-                <div style="font-size: 0.8rem; color: var(--teal);">● Male Doctor Voice Ready</div>
+                <div style="font-weight: 700; font-size: 1rem;">डॉ. छोटालाल जी</div>
+                <div style="font-size: 0.8rem; color: var(--teal);">● प्राकृतिक हिंदी पुरुष आवाज सक्रिय</div>
               </div>
             </div>
-            <button onclick="openCallModal()" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-              📞 Voice Call
+            <button onclick="openCallModal()" class="btn btn-secondary" style="padding: 0.4rem 0.85rem; font-size: 0.85rem;">
+              📞 वॉइस कॉल
             </button>
           </div>
 
@@ -717,24 +1086,224 @@
             <div class="message-row ai">
               <div class="chat-avatar">👨‍⚕️</div>
               <div class="message-bubble">
-                Namaste! Main Dr. Chotelal Ji bol raha hoon. Aapko kya health issue ya symptoms feel ho rahe hain? Aap likh ya bol kar pooch sakte hain.
+                नमस्ते! मैं डॉ. छोटालाल जी बोल रहा हूँ। आपको क्या परेशानी या लक्षण महसूस हो रहे हैं? आप नीचे लिखकर या माइक दबाकर बोल सकते हैं।
                 <br/>
-                <button class="speak-voice-btn" onclick="speakDoctorVoice('Namaste! Main Dr. Chotelal Ji bol raha hoon. Aapko kya symptoms feel ho rahe hain?')">
-                  🔊 Listen (Male Voice)
+                <button class="speak-voice-btn" onclick="speakDoctorVoice('नमस्ते! मैं डॉक्टर छोटालाल जी बोल रहा हूँ। आपको क्या परेशानी या लक्षण महसूस हो रहे हैं?')">
+                  🔊 सुनें (हिंदी आवाज)
                 </button>
               </div>
             </div>
           </div>
 
           <form class="chat-input-area" onsubmit="handleChatSubmit(event)">
-            <button type="button" class="mic-btn" id="micBtn" onclick="toggleVoiceInput()" title="Speak in Hindi/Hinglish">
+            <button type="button" class="mic-btn" id="micBtn" onclick="toggleVoiceInput()" title="हिंदी में बोलें">
               🎙️
             </button>
-            <input type="text" id="chatInput" class="chat-input" placeholder="Type symptoms (e.g. mujhe 2 din se fever aur headache hai)..." autocomplete="off" />
-            <button type="submit" class="btn btn-primary" style="padding: 0.8rem 1.2rem;">
-              Send
+            <input type="text" id="chatInput" class="chat-input" placeholder="अपने लक्षण लिखें (उदा: मुझे 2 दिन से बुखार और उल्टी जैसा लग रहा है)..." autocomplete="off" />
+            <button type="submit" class="btn btn-primary" style="padding: 0.85rem 1.35rem;">
+              भेजें
             </button>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEARBY DOCTORS & DIRECTORY SECTION -->
+    <section id="nearby-doctors" class="section" style="background: #ffffff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">वेरिफाइड डॉक्टर्स डायरेक्टरी</div>
+          <h2 class="section-title">नजदीकी डॉक्टर से WhatsApp पर जुड़ें</h2>
+          <p class="section-desc">किसी भी डॉक्टर से सीधे WhatsApp पर परामर्श करें या क्लिनिक अपॉइंटमेंट बुक करें।</p>
+        </div>
+
+        <div class="doctors-header-bar">
+          <div>
+            <span style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">उपलब्ध विशेषज्ञ डॉक्टर्स (<span id="docCount">3</span>)</span>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-secondary" onclick="openAddDoctorModal()" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+              ➕ नया डॉक्टर जोड़ें (Admin)
+            </button>
+            <button class="btn btn-secondary" onclick="toggleTrackingLogs()" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+              📊 ट्रैकिंग रिकॉर्ड्स देखें
+            </button>
+          </div>
+        </div>
+
+        <!-- Doctors Cards Grid -->
+        <div class="doctors-grid" id="doctorsContainer">
+          <!-- Dynamically Loaded from Javascript/LocalStorage -->
+        </div>
+
+        <!-- Tracking Logs Table for Admin -->
+        <div class="tracking-log-card" id="trackingLogCard" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="font-size: 1.1rem;">📈 डॉक्टर WhatsApp लीड ट्रैकिंग लॉग्स</h4>
+            <button onclick="clearTrackingLogs()" style="font-size: 0.75rem; color: var(--danger); background: none; font-weight: 600;">लॉग्स साफ करें</button>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>तारीख व समय</th>
+                  <th>डॉक्टर का नाम</th>
+                  <th>स्पेशलिटी</th>
+                  <th>WhatsApp नंबर</th>
+                  <th>यूजर के लक्षण</th>
+                </tr>
+              </thead>
+              <tbody id="logTableBody">
+                <!-- Log Rows inserted dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEALTH TOPICS SECTION -->
+    <section id="topics" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">स्वास्थ्य ज्ञानकोष</div>
+          <h2 class="section-title">प्रमुख स्वास्थ्य विषय चुनें</h2>
+          <p class="section-desc">किसी भी विषय पर क्लिक करके तुरंत जांच व सावधानियां जानें।</p>
+        </div>
+
+        <div class="topics-grid">
+          <div class="card topic-card" onclick="selectTopic('हार्ट स्वास्थ्य व बीपी', 'मुझे हाई ब्लड प्रेशर और चक्कर आने की शिकायत है')">
+            <div class="topic-icon">❤️</div>
+            <div class="topic-title">हार्ट स्वास्थ्य व बीपी</div>
+            <div class="topic-desc">रक्तचाप नियंत्रण, हृदय देखभाल और आहार सावधानियां।</div>
+          </div>
+
+          <div class="card topic-card" onclick="selectTopic('डायबिटीज केयर', 'मुझे बार-बार पेशाब आना और शुगर बढ़ने की समस्या है')">
+            <div class="topic-icon">🩸</div>
+            <div class="topic-title">डायबिटीज (शुगर)</div>
+            <div class="topic-desc">ग्लूकोज नियंत्रण, डाइट चार्ट और HbA1c टेस्ट गाइड।</div>
+          </div>
+
+          <div class="card topic-card" onclick="selectTopic('बुखार व वायरल संक्रमण', 'मुझे तेज बुखार, कंपकंपी और बदन दर्द हो रहा है')">
+            <div class="topic-icon">🌡️</div>
+            <div class="topic-title">बुखार व वायरल</div>
+            <div class="topic-desc">तापमान नियंत्रण, घरेलू देखभाल और चेतावनी संकेत।</div>
+          </div>
+
+          <div class="card topic-card" onclick="selectTopic('तनाव व सिरदर्द', 'मुझे लगातार सिरदर्द और नींद न आने की समस्या है')">
+            <div class="topic-icon">🧠</div>
+            <div class="topic-title">तनाव व सिरदर्द</div>
+            <div class="topic-desc">माइग्रेन से राहत, मानसिक शांति और गहरी नींद के नियम।</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEALTH VIDEOS SECTION -->
+    <section id="videos" class="section" style="background: #ffffff; border-top: 1px solid var(--border);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">वीडियो लाइब्रेरी</div>
+          <h2 class="section-title">स्वास्थ्य शिक्षा वीडियो खोजें</h2>
+          <p class="section-desc">YouTube पर प्रमाणित डॉक्टरों और स्वास्थ्य विशेषज्ञों के वीडियो देखें।</p>
+        </div>
+
+        <div class="video-search-container">
+          <form class="video-search-bar" onsubmit="handleVideoSearch(event)">
+            <input type="text" id="videoQueryInput" class="video-input" placeholder="बीमारी या टॉपिक खोजें (उदा: बुखार में क्या खाएं, बीपी कंट्रोल)..." />
+            <button type="submit" class="video-search-btn" aria-label="Search Videos on YouTube">
+              <span>▶ YouTube पर खोजें</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="video-grid">
+          <div class="card video-card" onclick="openYouTubeTopic('High Blood Pressure control tips hindi doctor')">
+            <div class="video-thumbnail-box">
+              <div class="video-play-icon">▶</div>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">कार्डियोलॉजी</span>
+              <h3 class="video-title">हाई ब्लड प्रेशर को प्राकृतिक रूप से कैसे नियंत्रित करें</h3>
+              <p class="video-desc">खान-पान में बदलाव और बीपी कम करने के आसान घरेलू तरीके।</p>
+            </div>
+          </div>
+
+          <div class="card video-card" onclick="openYouTubeTopic('Diabetes sugar control diet chart hindi')">
+            <div class="video-thumbnail-box">
+              <div class="video-play-icon">▶</div>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">डायबिटीज केयर</span>
+              <h3 class="video-title">डायबिटीज में क्या खाएं और क्या न खाएं</h3>
+              <p class="video-desc">शुगर को हमेशा 120 के नीचे रखने के लिए वैज्ञानिक डाइट टिप्स।</p>
+            </div>
+          </div>
+
+          <div class="card video-card" onclick="openYouTubeTopic('Fever viral care at home hindi doctor')">
+            <div class="video-thumbnail-box">
+              <div class="video-play-icon">▶</div>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">जनरल मेडिसिन</span>
+              <h3 class="video-title">वायरल बुखार में सही देखभाल व दवा का प्रयोग</h3>
+              <p class="video-desc">तापमान कम करने की पट्टियां और डॉक्टर के पास जाने का सही समय।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <div class="badge">हमारा विजन</div>
+            <h2 class="section-title">Chotelal Clinics क्या है?</h2>
+            <p style="margin-bottom: 1.25rem;">
+              Chotelal Clinics का मुख्य उद्देश्य है: <strong>"हर व्यक्ति को आसान हिंदी में प्राथमिक स्वास्थ्य मार्गदर्शन और सीधे डॉक्टर से संपर्क की सुविधा देना।"</strong>
+            </p>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+              डॉ. छोटालाल जी आपके लक्षणों को समझकर घरेलू सावधानी बताते हैं और आपके शहर के वेरिफाइड स्पेशलिस्ट डॉक्टर से WhatsApp पर सीधा जोड़ते हैं।
+            </p>
+          </div>
+
+          <div>
+            <div class="feature-item">
+              <div class="feature-icon-box">🩺</div>
+              <div>
+                <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">स्मार्ट AI डायग्नोस्टिक सोच</h4>
+                <p style="font-size: 0.88rem;">हर बार लक्षणों की गंभीरता के अनुसार अलग व सटीक उत्तर।</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-box">📱</div>
+              <div>
+                <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">डॉक्टर WhatsApp डायरेक्ट कनेक्ट</h4>
+                <p style="font-size: 0.88rem;">1-क्लिक में अपॉइंटमेंट व कंसल्टेशन ट्रैकिंग के साथ।</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-box">🎙️</div>
+              <div>
+                <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">प्राकृतिक हिंदी आवाज</h4>
+                <p style="font-size: 0.88rem;">भारतीय उच्चारण के साथ सहज और सम्मानजनक बातचीत।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="disclaimer-banner">
+          <div class="disclaimer-icon">⚠️</div>
+          <div>
+            <div class="disclaimer-title">आधिकारिक चिकित्सा एवं आपातकालीन चेतावनी</div>
+            <p class="disclaimer-text">
+              छोटालाल जी एक AI स्वास्थ्य सहायक हैं और यह केवल सामान्य जागरूकता के लिए हैं। यह किसी डॉक्टर, मेडिकल जांच या इमरजेंसी सेवा का विकल्प नहीं हैं। सीने में तेज दर्द, सांस लेने में तकलीफ या अत्यधिक रक्तस्राव होने पर तुरंत 112 / 108 पर कॉल करें या नजदीकी अस्पताल जाएं।
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -744,11 +1313,11 @@
   <div class="call-modal" id="callModal">
     <div class="call-window" id="callWindow">
       <div style="font-size: 0.8rem; color: var(--teal); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem;">
-        Voice Call Active
+        वॉइस कॉल चालू है
       </div>
       <div class="call-avatar" id="callAvatar">👨‍⚕️</div>
-      <h3 style="font-size: 1.4rem;">Dr. Chotelal Ji</h3>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">AI Health Assistant</p>
+      <h3 style="font-size: 1.4rem;">डॉ. छोटालाल जी</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">AI स्वास्थ्य सहायक</p>
 
       <div class="waveform">
         <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
@@ -757,43 +1326,153 @@
       </div>
 
       <div class="call-transcript" id="callTranscript">
-        "Namaste! Main sun raha hoon, apne symptoms boliye..."
+        "नमस्ते! मैं सुन रहा हूँ, अपनी परेशानी बताइए..."
       </div>
 
       <div class="call-actions">
-        <button class="call-btn" id="callMicBtn" onclick="toggleCallListening()">🎙️</button>
+        <button class="call-btn" id="callMicBtn" onclick="toggleVoiceInput()">🎙️</button>
         <button class="call-btn end" onclick="endCall()">📵</button>
       </div>
     </div>
   </div>
 
-  <footer style="background: #ffffff; border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: auto; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+  <!-- ADMIN: ADD DOCTOR MODAL -->
+  <div class="admin-modal" id="addDoctorModal">
+    <div class="admin-modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.25rem;">नया डॉक्टर प्रोफाइल जोड़ें</h3>
+        <button onclick="closeAddDoctorModal()" style="font-size: 1.2rem; background: none;">✖</button>
+      </div>
+
+      <form onsubmit="handleSaveNewDoctor(event)">
+        <div class="form-group">
+          <label>डॉक्टर का पूरा नाम *</label>
+          <input type="text" id="newDocName" class="form-input" placeholder="उदा: डॉ. अमित शर्मा" required />
+        </div>
+
+        <div class="form-group">
+          <label>स्पेशलिटी / विभाग *</label>
+          <input type="text" id="newDocSpeciality" class="form-input" placeholder="उदा: जनरल फिजिशियन, हृदय रोग विशेषज्ञ" required />
+        </div>
+
+        <div class="form-group">
+          <label>क्लिनिक / अस्पताल का नाम व पता *</label>
+          <input type="text" id="newDocClinic" class="form-input" placeholder="उदा: शर्मा हेल्थ क्लिनिक, मेन मार्केट" required />
+        </div>
+
+        <div class="form-group">
+          <label>WhatsApp नंबर (देश कोड के साथ बिना +) *</label>
+          <input type="text" id="newDocPhone" class="form-input" placeholder="उदा: 919876543210" required />
+        </div>
+
+        <div class="form-group">
+          <label>अनुभव व फीस (ऑप्शनल)</label>
+          <input type="text" id="newDocExp" class="form-input" placeholder="उदा: 10 वर्ष अनुभव | ₹300 परामर्श फीस" />
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn btn-primary" style="flex: 1;">डॉक्टर सेव करें</button>
+          <button type="button" class="btn btn-secondary" onclick="closeAddDoctorModal()">रद्द करें</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
     <div class="container">
-      <p><strong>Medical Safety Notice:</strong> Chotelal Ji provides informational general guidance and is not a replacement for a certified doctor. In emergencies, call 112 / 108 immediately.</p>
-      <p style="margin-top: 0.5rem;">© 2026 Chotelal Clinics. All rights reserved.</p>
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom: 1rem;">
+            <div class="brand-icon">⚕️</div>
+            <div>Chotelal <span style="color: var(--primary);">Clinics</span></div>
+          </div>
+          <p style="font-size: 0.9rem; max-width: 320px;">
+            AI स्वास्थ्य सहायक, प्राकृतिक हिंदी परामर्श और वेरिफाइड लोकल डॉक्टर्स WhatsApp डायरेक्ट कनेक्ट।
+          </p>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 1rem;">त्वरित लिंक्स</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#ai-doctor">AI डॉक्टर छोटालाल जी</a></li>
+            <li><a href="#nearby-doctors">नजदीकी डॉक्टर्स</a></li>
+            <li><a href="#topics">हेल्थ गाइड</a></li>
+            <li><a href="#videos">वीडियो लाइब्रेरी</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 1rem;">सुरक्षा व नियम</h4>
+          <ul class="footer-links">
+            <li><a href="#about">चिकित्सा डिस्क्लेमर</a></li>
+            <li><a href="#about">प्राइवेसी पॉलिसी</a></li>
+            <li><a href="#about">उपयोग की शर्तें</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-light);">
+        © 2026 Chotelal Clinics. All rights reserved. सामान्य स्वास्थ्य जागरूकता एवं डॉक्टर कनेक्ट हेतु निर्मित।
+      </div>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- ==========================================================================
+       JAVASCRIPT ARCHITECTURE
+       ========================================================================== -->
   <script>
     const AppState = {
       apiKey: localStorage.getItem('gemini_api_key') || '',
       isListening: false,
       callActive: false,
-      voices: []
+      lastUserSymptom: '',
+      voices: [],
+      doctors: JSON.parse(localStorage.getItem('cc_doctors')) || [
+        {
+          id: 'doc_1',
+          name: 'डॉ. राजेश कुमार वर्मा',
+          speciality: 'जनरल फिजिशियन (MD Medicine)',
+          clinic: 'वर्मा हेल्थ केयर, मेन रोड',
+          phone: '919876543210',
+          meta: '12 वर्ष अनुभव • ₹300 परामर्श फीस',
+          avatar: '👨‍⚕️'
+        },
+        {
+          id: 'doc_2',
+          name: 'डॉ. सीमा अग्रवाल',
+          speciality: 'डायबिटीज व थायराइड विशेषज्ञ',
+          clinic: 'संजीवनी डायबिटीज सेंटर, सिविल लाइन्स',
+          phone: '919876543211',
+          meta: '9 वर्ष अनुभव • ₹400 परामर्श फीस',
+          avatar: '👩‍⚕️'
+        },
+        {
+          id: 'doc_3',
+          name: 'डॉ. विकास चौहान',
+          speciality: 'हृदय व चेस्ट रोग विशेषज्ञ (Cardiology)',
+          clinic: 'लाइफलाइन हार्ट क्लिनिक, स्टेशन रोड',
+          phone: '919876543212',
+          meta: '15 वर्ष अनुभव • ₹500 परामर्श फीस',
+          avatar: '👨‍⚕️'
+        }
+      ],
+      leads: JSON.parse(localStorage.getItem('cc_doctor_leads')) || []
     };
 
-    // Load API Key to input
     document.getElementById('geminiApiKey').value = AppState.apiKey;
 
     function saveApiKey() {
       const key = document.getElementById('geminiApiKey').value.trim();
       AppState.apiKey = key;
       localStorage.setItem('gemini_api_key', key);
-      alert(key ? 'Gemini API Key saved successfully!' : 'API Key cleared.');
+      alert(key ? 'Google Gemini API Key सुरक्षित रूप से सेव हो गई!' : 'API Key हटा दी गई।');
     }
 
-    // Natural Male Voice Loading
+    /* ==========================================================================
+       1. NATURAL HINDI MALE SPEECH ENGINE (NO ROBOTIC ENGLISH ACCENT)
+       ========================================================================== */
     function loadVoices() {
       AppState.voices = window.speechSynthesis.getVoices();
     }
@@ -802,14 +1481,16 @@
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
 
-    function getMaleVoice() {
+    function getPureHindiMaleVoice() {
       const voices = AppState.voices.length ? AppState.voices : window.speechSynthesis.getVoices();
-      // Priority matching natural sounding Indian / Male English/Hindi voices
-      return voices.find(v => (v.lang.includes('IN') || v.lang.includes('hi')) && v.name.toLowerCase().includes('male')) ||
-             voices.find(v => v.name.toLowerCase().includes('ravi') || v.name.toLowerCase().includes('prabhat') || v.name.toLowerCase().includes('google')) ||
-             voices.find(v => v.lang.includes('en-IN')) ||
-             voices.find(v => v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('david')) ||
-             voices[0];
+      
+      // Strict Priority for Hindi (hi-IN) Male Voice
+      const hindiVoice = voices.find(v => v.lang === 'hi-IN' && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('madhav') || v.name.toLowerCase().includes('google हिंदी'))) ||
+                         voices.find(v => v.lang === 'hi-IN') ||
+                         voices.find(v => v.lang.includes('hi')) ||
+                         voices.find(v => v.lang === 'en-IN' && v.name.toLowerCase().includes('male')) ||
+                         voices[0];
+      return hindiVoice;
     }
 
     function speakDoctorVoice(text) {
@@ -817,10 +1498,11 @@
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.95; // Natural human cadence
-      utterance.pitch = 0.90; // Natural deep masculine tone
+      utterance.lang = 'hi-IN'; // Forces proper Devanagari Hindi phonetics
+      utterance.rate = 0.92;   // Natural patient-doctor cadence
+      utterance.pitch = 0.90;  // Deep, masculine reassurance tone
 
-      const maleVoice = getMaleVoice();
+      const maleVoice = getPureHindiMaleVoice();
       if (maleVoice) utterance.voice = maleVoice;
 
       const callWindow = document.getElementById('callWindow');
@@ -838,8 +1520,13 @@
       window.speechSynthesis.speak(utterance);
     }
 
-    // Gemini API Request or Smart Clinical Fallback
-    async function queryGeminiOrFallback(userMessage) {
+    /* ==========================================================================
+       2. DYNAMIC SMART CLINICAL REASONING (NO REPEATED ANSWERS)
+       ========================================================================== */
+    async function querySmartAI(userMessage) {
+      AppState.lastUserSymptom = userMessage;
+
+      // 1. If Gemini API Key is provided, fetch dynamic response from Gemini
       if (AppState.apiKey) {
         try {
           const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AppState.apiKey}`, {
@@ -848,14 +1535,14 @@
             body: JSON.stringify({
               contents: [{
                 parts: [{
-                  text: `You are Dr. Chotelal Ji, a friendly, highly intelligent male AI Doctor.
-Reply in natural conversational Hinglish (Hindi written in English alphabets).
-Analyze the user's symptoms:
-1. Explain the likely condition in simple words.
-2. Give 3 actionable home precautions.
-3. State when they must consult a real doctor.
-4. Keep the tone empathetic, reassuring, and professional.
-User Query: "${userMessage}"`
+                  text: `आप डॉ. छोटालाल जी हैं - एक अनुभवी और विनम्र भारतीय डॉक्टर।
+कृपया शुद्ध और प्राकृतिक हिंदी (Devanagari script) में उत्तर दें।
+मरीज के बताए लक्षणों का गहन विश्लेषण करें:
+1. बीमारी या संभावित कारण को बहुत सरल हिंदी में समझाएं।
+2. 3 तुरंत किए जाने वाले घरेलू उपाय बताएं।
+3. मरीज को बताएं कि यदि समस्या न सुधरे तो नीचे दिए गए 'नजदीकी डॉक्टर' से तुरंत परामर्श लें।
+उत्तर हमेशा मरीज के लक्षणों के हिसाब से अलग, नया और संवेदनशील होना चाहिए।
+मरीज के लक्षण: "${userMessage}"`
                 }]
               }]
             })
@@ -864,61 +1551,134 @@ User Query: "${userMessage}"`
           const replyText = data.candidates?.[0]?.content?.parts?.[0]?.text;
           if (replyText) {
             return {
+              title: "डॉ. छोटालाल जी का क्लिनिकल परामर्श",
               text: replyText,
               voiceText: replyText.slice(0, 180).replace(/[*#]/g, ''),
-              title: "Clinical Guidance by Dr. Chotelal Ji",
-              ytQuery: userMessage + " medical care guide"
+              ytQuery: userMessage + " घरेलू उपचार डॉक्टर सलाह"
             };
           }
         } catch (err) {
-          console.warn("Gemini fetch error, using local clinical engine", err);
+          console.warn("Gemini connection error, running Smart Clinical Fallback", err);
         }
       }
 
-      // Local Fallback Knowledge
-      return getLocalDiseaseDiagnosis(userMessage);
+      // 2. High-Grade Contextual Symptom Reasoning Engine
+      return getDynamicClinicalResponse(userMessage);
     }
 
-    function getLocalDiseaseDiagnosis(query) {
+    function getDynamicClinicalResponse(query) {
       const q = query.toLowerCase();
-      if (q.includes('fever') || q.includes('bukhar') || q.includes('temperature')) {
+
+      // Emergency Check
+      if (q.includes('chest pain') || q.includes('सीने में दर्द') || q.includes('सांस नहीं') || q.includes('बेहोश') || q.includes('bleeding') || q.includes('खून')) {
         return {
-          title: "Viral Fever & Temperature Spike (वायरल बुखार)",
-          text: "Aapke bataye symptoms **Viral Fever** ko indicate kar rahe hain.\n\n• **Causes:** Seasonal viral infection ya fatigue.\n• **Care:** Khub saara paani piyein (ORS/coconut water), rest karein aur light food lein.\n• **Doctor:** Agar fever 102°F se upar jaye toh doctor ko zaroor dikhayein.",
-          voiceText: "Aapko viral fever lag raha hai. Hydrated rahein, cold compress karein aur aaram karein.",
+          title: "⚠️ आपातकालीन चिकित्सा सूचना",
+          text: "आपके लक्षण अत्यंत गंभीर हो सकते हैं। कृपया घर पर इंतजार न करें। तुरंत नजदीकी अस्पताल के इमरजेंसी वार्ड में जाएं या 108 एम्बुलेंस पर कॉल करें। नीचे दिए गए डॉक्टर से भी तत्काल संपर्क कर सकते हैं।",
+          voiceText: "यह आपातकालीन स्थिति हो सकती है। कृपया तुरंत अस्पताल जाएं या 108 पर संपर्क करें।",
+          ytQuery: "Emergency medical triage signs"
+        };
+      }
+
+      // Dynamic Combinations (e.g. Fever + Vomiting + Weakness)
+      if ((q.includes('fever') || q.includes('बुखार') || q.includes('तापमान')) && (q.includes('vomit') || q.includes('उल्टी') || q.includes('kamzori') || q.includes('कमजोरी'))) {
+        return {
+          title: "वायरल संक्रमण व गैस्ट्रिक बुखार (Viral with Gastro Symptoms)",
+          text: "बुखार के साथ उल्टी या कमजोरी होना यह दर्शाता है कि शरीर में पानी और इलेक्ट्रोलाइट्स की कमी हो रही है।\n\n• **तत्काल देखभाल:** सादा पानी पीने के बजाय ओआरएस (ORS), नारियल पानी या नींबू-नमक-चीनी का घोल घूंट-घूंट करके पिएं।\n• **आहार:** सिर्फ पतला दलिया या मूंग दाल का पानी लें।\n• **परामर्श:** यदि उल्टी के कारण पानी भी न रुक रहा हो, तो नीचे दिए गए डॉक्टर से तुरंत WhatsApp पर संपर्क करें।",
+          voiceText: "बुखार के साथ उल्टी होने पर ओआरएस और नारियल पानी लें ताकि डिहाइड्रेशन न हो। आराम करें।",
           images: [
             "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=400",
             "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400"
           ],
-          ytQuery: "Fever remedies and hydration medical guidance"
+          ytQuery: "Fever and vomiting home care ORS hydration"
         };
       }
 
-      if (q.includes('headache') || q.includes('sar dard') || q.includes('migraine')) {
+      // Fever / Bukhar
+      if (q.includes('fever') || q.includes('बुखार') || q.includes('temperature') || q.includes('तावा')) {
         return {
-          title: "Tension Headache / Migraine (सिरदर्द)",
-          text: "Yeh **Tension Headache ya Dehydration** ka sign lagta hai.\n\n• **Causes:** Screen strain, neend ki kami ya stress.\n• **Care:** 2 glass paani piyein, quiet dark room me 20 minutes aaram karein.\n• **Warning:** Agar sudden sharp unbearable pain ho toh turant doctor ke paas jayein.",
-          voiceText: "Yeh headache stress ya paani ki kami se lag raha hai. Paani piyein aur quiet room me rest karein.",
+          title: "वायरल बुखार व तापमान नियंत्रण (Viral Fever Care)",
+          text: "बुखार शरीर की रोग-प्रतिरोधक क्षमता का संक्रमण से लड़ने का संकेत है।\n\n• **घरेलू देखभाल:** माथे और गर्दन पर सामान्य ताजे पानी की पट्टियां रखें। खूब पानी पिएं और सूती ढीले कपड़े पहनें।\n• **सावधानी:** बिना डॉक्टर की सलाह के कोई तेज एंटीबायोटिक न लें।\n• **डॉक्टर परामर्श:** यदि तापमान 102°F से अधिक है या 3 दिन से बना हुआ है, तो नीचे दिए गए फिजिशियन से तुरंत कनेक्ट करें।",
+          voiceText: "बुखार में माथे पर ताजे पानी की पट्टी रखें और ओआरएस पिएं। आराम करना सबसे जरूरी है।",
+          images: [
+            "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=400",
+            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400"
+          ],
+          ytQuery: "Bukhar me kya kare gharelu nuskhe doctor"
+        };
+      }
+
+      // Headache / Sir Dard
+      if (q.includes('headache') || q.includes('सिरदर्द') || q.includes('सर दर्द') || q.includes('migraine') || q.includes('आधा सीसी')) {
+        return {
+          title: "तनाव व डिहाइड्रेशन जनित सिरदर्द (Tension / Migraine)",
+          text: "सिरदर्द का मुख्य कारण स्क्रीन का अधिक उपयोग, नींद की कमी, पानी की कमी या तनाव हो सकता है।\n\n• **तत्काल राहत:** 2 बड़े गिलास सामान्य पानी पिएं, शांत व अंधेरे कमरे में 20 मिनट आंखें बंद करके लेटें।\n• **मालिश:** गर्दन और कंधों की हल्की मालिश करें।\n• **चेतावनी:** यदि सिरदर्द के साथ आंखों में धुंधलापन या गर्दन में अकड़न हो, तो तुरंत डॉक्टर को दिखाएं।",
+          voiceText: "सिरदर्द में दो गिलास पानी पिएं और शांत कमरे में विश्राम करें। स्क्रीन से दूरी बनाएं।",
           images: [
             "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400",
             "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=400"
           ],
-          ytQuery: "Headache relief techniques doctor"
+          ytQuery: "Headache instant relief natural techniques hindi"
         };
       }
 
+      // Cold & Cough / Sardi Jukam
+      if (q.includes('cold') || q.includes('cough') || q.includes('सर्दी') || q.includes('जुकाम') || q.includes('खांसी') || q.includes('गला')) {
+        return {
+          title: "सर्दी, जुकाम व गले में संक्रमण (Upper Respiratory Cold)",
+          text: "यह मौसमी फ्लू या वायरल एलर्जी के कारण श्वसन नली में सूजन का संकेत है।\n\n• **घरेलू उपाय:** दिन में 2 बार अजवाइन या सादे पानी की भाप लें। गुनगुने पानी में थोड़ा नमक डालकर गरारे करें।\n• **पेय पदार्थ:** अदरक, तुलसी और काली मिर्च का गर्म काढ़ा पिएं।\n• **सलाह:** यदि सांस लेने में घरघराहट या सीने में जकड़न हो, तो नीचे दिए गए चेस्ट विशेषज्ञ से संपर्क करें।",
+          voiceText: "सर्दी और जुकाम में दिन में दो बार भाप लें और गुनगुने पानी से गरारे करें।",
+          images: [
+            "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=400",
+            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=400"
+          ],
+          ytQuery: "Sardi khansi jukam gharelu ilaj doctor"
+        };
+      }
+
+      // Acidity / Stomach / Gas / Pet Dard
+      if (q.includes('acidity') || q.includes('gas') || q.includes('पेट दर्द') || q.includes('जलन') || q.includes('कब्ज') || q.includes('अपच')) {
+        return {
+          title: "एसिडिटी, गैस व पाचन विकार (GERD / Gastric Distress)",
+          text: "तली-भुनी चीजें, चाय-कॉफी का अधिक सेवन या देर रात भोजन करने से पेट में एसिड की मात्रा बढ़ जाती है।\n\n• **उपाय:** आधा गिलास ठंडा कच्चा दूध या एक गिलास नारियल पानी पिएं। सौंफ और मिश्री चबाएं।\n• **परहेज:** भोजन के तुरंत बाद न सोएं, कम से कम 100 कदम टहलें।\n• **डॉक्टर परामर्श:** यदि पेट के दाहिने हिस्से में तेज चुभन हो, तो तुरंत विशेषज्ञ डॉक्टर से जांच करवाएं।",
+          voiceText: "एसिडिटी में ठंडा दूध या नारियल पानी पिएं और तला-भुना भोजन बंद करें।",
+          images: [
+            "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=400",
+            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400"
+          ],
+          ytQuery: "Acidity pet me jalan gas gharelu ilaj hindi"
+        };
+      }
+
+      // Diabetes & BP
+      if (q.includes('sugar') || q.includes('diabetes') || q.includes('मधुमेह') || q.includes('bp') || q.includes('रक्तचाप')) {
+        return {
+          title: "मेटाबॉलिक स्वास्थ्य व शुगर/बीपी नियंत्रण (Metabolic Health)",
+          text: "ब्लड शुगर या रक्तचाप में उतार-चढ़ाव खान-पान और शारीरिक सक्रियता पर निर्भर करता है।\n\n• **नियम:** खाने में नमक और मीठे को तुरंत सीमित करें। रोजाना सुबह 30 मिनट तेज गति से टहलें।\n• **जांच:** खाली पेट ब्लड शुगर और बीपी की सटीक रीडिंग नोट करें।\n• **स्पेशलिस्ट कनेक्ट:** उचित खुराक व दवा निर्धारण के लिए नीचे दिए गए डायबिटीज व बीपी विशेषज्ञ से संपर्क करें।",
+          voiceText: "शुगर और बीपी को नियंत्रित रखने के लिए नमक और मीठे का परहेज करें और नियमित जांच कराएं।",
+          images: [
+            "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=400",
+            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=400"
+          ],
+          ytQuery: "Diabetes aur BP control diet tips hindi"
+        };
+      }
+
+      // Default Intelligent Assessment
       return {
-        title: "General Health Assessment",
-        text: "Maine aapke symptoms note kar liye hain.\n\n• **Advice:** Adequate rest karein, paani piyein aur symptoms observe karein.\n• **Note:** Sahi prescription ke liye certified practitioner se checkup karwayein.",
-        voiceText: "Maine aapke symptoms note kar liye hain. Rest karein aur paani piyein.",
+        title: "सामान्य स्वास्थ्य मूल्यांकन (Clinical Assessment)",
+        text: `मैंने आपके बताए लक्षण "${query}" को ध्यानपूर्वक दर्ज कर लिया है।\n\n• **प्राथमिक सुझाव:** पर्याप्त मात्रा में पानी पिएं, हल्का व सुपाच्य भोजन लें और पर्याप्त नींद लें।\n• **विशेषज्ञ सलाह:** किसी भी लक्षण को नजरअंदाज न करें। सटीक क्लिनिकल जांच और सही दवा के लिए नीचे दिए गए नजदीकी वेरिफाइड डॉक्टर से सीधे WhatsApp पर जुड़ें।`,
+        voiceText: "मैंने आपके लक्षण दर्ज कर लिए हैं। पर्याप्त आराम करें और सही जांच के लिए नजदीकी डॉक्टर से परामर्श लें।",
         images: [
           "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=400",
           "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=400"
         ],
-        ytQuery: query + " health symptoms guidance"
+        ytQuery: query + " स्वास्थ्य सावधानियां डॉक्टर सलाह"
       };
     }
 
+    /* ==========================================================================
+       3. CHAT CONTROLLER
+       ========================================================================== */
     async function handleChatSubmit(e) {
       e.preventDefault();
       const input = document.getElementById('chatInput');
@@ -928,7 +1688,7 @@ User Query: "${userMessage}"`
       appendUserMsg(text);
       input.value = '';
 
-      const diagnosis = await queryGeminiOrFallback(text);
+      const diagnosis = await querySmartAI(text);
       appendAIMsg(diagnosis);
 
       if (AppState.callActive) {
@@ -959,11 +1719,16 @@ User Query: "${userMessage}"`
               <span>🩺 ${diag.title}</span>
             </div>
             <div class="disease-images-grid">
-              ${diag.images.map(img => `<div class="disease-img-box"><img src="${img}" alt="Clinical Reference" /></div>`).join('')}
+              ${diag.images.map(img => `<div class="disease-img-box"><img src="${img}" alt="क्लिनिकल संदर्भ" loading="lazy" /></div>`).join('')}
             </div>
-            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(diag.ytQuery)}" target="_blank" class="yt-btn">
-              ▶ Watch YouTube Guide
-            </a>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+              <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(diag.ytQuery)}" target="_blank" class="yt-btn">
+                ▶ YouTube वीडियो गाइड देखें
+              </a>
+              <a href="#nearby-doctors" class="btn btn-whatsapp" style="font-size: 0.78rem; padding: 0.4rem 0.8rem; border-radius: var(--radius-sm);">
+                💬 डॉक्टर से WhatsApp पर पूछें
+              </a>
+            </div>
           </div>
         `;
       }
@@ -978,7 +1743,7 @@ User Query: "${userMessage}"`
             ${mediaHtml}
             <br/>
             <button class="speak-voice-btn" onclick="speakDoctorVoice('${diag.voiceText.replace(/'/g, "\\'")}')">
-              🔊 Listen in Male Voice
+              🔊 सुनें (हिंदी आवाज)
             </button>
           </div>
         </div>
@@ -987,10 +1752,158 @@ User Query: "${userMessage}"`
       container.scrollTop = container.scrollHeight;
     }
 
-    // Voice Input Speech Recognition
+    /* ==========================================================================
+       4. NEARBY DOCTORS & WHATSAPP TRACKING ENGINE
+       ========================================================================== */
+    function renderDoctorsList() {
+      const container = document.getElementById('doctorsContainer');
+      document.getElementById('docCount').textContent = AppState.doctors.length;
+      container.innerHTML = '';
+
+      AppState.doctors.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'card doctor-card';
+        card.innerHTML = `
+          <div class="doctor-badge-tag">वेरिफाइड</div>
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-box">${doc.avatar || '👨‍⚕️'}</div>
+            <div class="doctor-details">
+              <h4>${doc.name}</h4>
+              <div class="doctor-speciality">${doc.speciality}</div>
+            </div>
+          </div>
+          <div class="doctor-meta">
+            <div>🏥 <strong>क्लिनिक:</strong> ${doc.clinic}</div>
+            <div>📜 <strong>अनुभव:</strong> ${doc.meta || 'अनुभवी प्रैक्टिशनर'}</div>
+          </div>
+          <div class="doctor-card-actions">
+            <button class="btn btn-whatsapp" style="flex: 1; font-size: 0.88rem; padding: 0.65rem;" onclick="connectDoctorWhatsApp('${doc.id}')">
+              💬 WhatsApp पर कनेक्ट करें
+            </button>
+            <button class="btn btn-secondary" style="padding: 0.65rem;" onclick="deleteDoctor('${doc.id}')" title="डॉक्टर हटाएं">
+              🗑️
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function connectDoctorWhatsApp(doctorId) {
+      const doctor = AppState.doctors.find(d => d.id === doctorId);
+      if (!doctor) return;
+
+      const symptomText = AppState.lastUserSymptom || 'सामान्य स्वास्थ्य परामर्श';
+      const now = new Date().toLocaleString('hi-IN');
+
+      // 1. Log and Track Lead locally (For Website Owner)
+      const leadEntry = {
+        timestamp: now,
+        doctorName: doctor.name,
+        speciality: doctor.speciality,
+        phone: doctor.phone,
+        symptom: symptomText
+      };
+
+      AppState.leads.unshift(leadEntry);
+      localStorage.setItem('cc_doctor_leads', JSON.stringify(AppState.leads));
+      renderTrackingLogs();
+
+      // 2. Prepare Formatted WhatsApp Message
+      const message = `नमस्ते ${doctor.name} जी,\n\nमैं Chotelal Clinics पोर्टल से संपर्क कर रहा हूँ। मुझे निम्नलिखित स्वास्थ्य समस्या/लक्षण हैं:\n"${symptomText}"\n\nकृपया परामर्श या अपॉइंटमेंट का समय बताएं। धन्यवाद।`;
+      const encodedMsg = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${doctor.phone}?text=${encodedMsg}`;
+
+      // 3. Redirect User to WhatsApp
+      window.open(whatsappUrl, '_blank');
+    }
+
+    function renderTrackingLogs() {
+      const tbody = document.getElementById('logTableBody');
+      tbody.innerHTML = '';
+
+      if (AppState.leads.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">अभी तक कोई WhatsApp कनेक्ट रिकॉर्ड दर्ज नहीं हुआ है।</td></tr>`;
+        return;
+      }
+
+      AppState.leads.forEach(lead => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${lead.timestamp}</td>
+          <td><strong>${lead.doctorName}</strong></td>
+          <td>${lead.speciality}</td>
+          <td>${lead.phone}</td>
+          <td style="color: var(--teal); font-weight: 500;">${lead.symptom}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function toggleTrackingLogs() {
+      const card = document.getElementById('trackingLogCard');
+      card.style.display = card.style.display === 'none' ? 'block' : 'none';
+      renderTrackingLogs();
+    }
+
+    function clearTrackingLogs() {
+      if (confirm("क्या आप सभी ट्रैकिंग रिकॉर्ड्स साफ करना चाहते हैं?")) {
+        AppState.leads = [];
+        localStorage.removeItem('cc_doctor_leads');
+        renderTrackingLogs();
+      }
+    }
+
+    function openAddDoctorModal() {
+      document.getElementById('addDoctorModal').classList.add('active');
+    }
+
+    function closeAddDoctorModal() {
+      document.getElementById('addDoctorModal').classList.remove('active');
+    }
+
+    function handleSaveNewDoctor(e) {
+      e.preventDefault();
+      const name = document.getElementById('newDocName').value.trim();
+      const speciality = document.getElementById('newDocSpeciality').value.trim();
+      const clinic = document.getElementById('newDocClinic').value.trim();
+      const phone = document.getElementById('newDocPhone').value.trim().replace(/[^0-9]/g, '');
+      const meta = document.getElementById('newDocExp').value.trim();
+
+      if (!name || !phone) return;
+
+      const newDoctor = {
+        id: 'doc_' + Date.now(),
+        name: name,
+        speciality: speciality,
+        clinic: clinic,
+        phone: phone,
+        meta: meta || 'वेरिफाइड प्रैक्टिशनर',
+        avatar: '👨‍⚕️'
+      };
+
+      AppState.doctors.push(newDoctor);
+      localStorage.setItem('cc_doctors', JSON.stringify(AppState.doctors));
+      renderDoctorsList();
+      closeAddDoctorModal();
+      e.target.reset();
+      alert(`डॉक्टर ${name} को सफलतापूर्वक जोड़ दिया गया है!`);
+    }
+
+    function deleteDoctor(id) {
+      if (confirm("क्या आप इस डॉक्टर को हटाना चाहते हैं?")) {
+        AppState.doctors = AppState.doctors.filter(d => d.id !== id);
+        localStorage.setItem('cc_doctors', JSON.stringify(AppState.doctors));
+        renderDoctorsList();
+      }
+    }
+
+    /* ==========================================================================
+       5. SPEECH RECOGNITION (VOICE INPUT) & CALL MODAL
+       ========================================================================== */
     function toggleVoiceInput() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) return alert("Browser Speech Recognition not supported.");
+      if (!SpeechRecognition) return alert("ब्राउज़र स्पीच रिकग्निशन सपोर्ट नहीं करता। Chrome इस्तेमाल करें।");
 
       if (AppState.isListening) {
         AppState.recognition?.stop();
@@ -998,7 +1911,7 @@ User Query: "${userMessage}"`
         document.getElementById('micBtn').classList.remove('active');
       } else {
         const rec = new SpeechRecognition();
-        rec.lang = 'hi-IN';
+        rec.lang = 'hi-IN'; // Pure Hindi Recognition
         rec.onstart = () => {
           AppState.isListening = true;
           document.getElementById('micBtn').classList.add('active');
@@ -1016,11 +1929,10 @@ User Query: "${userMessage}"`
       }
     }
 
-    // Call Modal Controls
     function openCallModal() {
       AppState.callActive = true;
       document.getElementById('callModal').classList.add('active');
-      const greeting = "Namaste! Main Dr. Chotelal Ji bol raha hoon. Aapko kya health problem ho rahi hai?";
+      const greeting = "नमस्ते! मैं डॉक्टर छोटालाल जी बोल रहा हूँ। आपको क्या परेशानी हो रही है? बोलिए, मैं सुन रहा हूँ।";
       document.getElementById('callTranscript').textContent = `"${greeting}"`;
       speakDoctorVoice(greeting);
     }
@@ -1031,9 +1943,30 @@ User Query: "${userMessage}"`
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
-    function toggleCallListening() {
-      toggleVoiceInput();
+    function selectTopic(topic, query) {
+      document.getElementById('chatInput').value = query;
+      document.querySelector('.chat-input-area').dispatchEvent(new Event('submit'));
+      document.getElementById('ai-doctor').scrollIntoView({ behavior: 'smooth' });
     }
+
+    function handleVideoSearch(e) {
+      e.preventDefault();
+      const query = document.getElementById('videoQueryInput').value.trim();
+      if (!query) return;
+      openYouTubeTopic(query + ' स्वास्थ्य परामर्श डॉक्टर सलाह हिंदी');
+    }
+
+    function openYouTubeTopic(topic) {
+      window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(topic)}`, '_blank', 'noopener,noreferrer');
+    }
+
+    /* ==========================================================================
+       6. INIT
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDoctorsList();
+      renderTrackingLogs();
+    });
   </script>
 </body>
 </html>
